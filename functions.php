@@ -35,7 +35,7 @@
     //by using this we can trim the string from start and end by providing the seperators to trim by default it is space
 
 
-    
+    //123456
     
 
 ?>
