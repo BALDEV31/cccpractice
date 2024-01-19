@@ -12,6 +12,12 @@ echo "<pre>";
     //   echo str_repeat("*",2*$i-1);
     //   echo PHP_EOL;
     // }
+    // for($i=1;$i<=5;$i++){
+    //     for($j=1;$j<=5-$i;$j++){
+    //         echo $j;
+    //     }
+    //     echo "<br>";
+    // }
 
 
 //while loop
@@ -39,7 +45,7 @@ echo "<pre>";
         //     echo "the day is :".$day."<br>";
         // }
 
-        
+
 echo "</pre>";
 
 ?>

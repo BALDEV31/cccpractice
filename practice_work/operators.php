@@ -6,7 +6,7 @@
     // echo "subtraction of two numbers ".($x - $y)."<br>";
     // echo "multiplication of two numbers ".($x * $y)."<br>";
     // echo "division of two numbers ".($x / $y)."<br>";
-    // echo "exponrnent of two numbers ".(2**3)."<br>";
+    // echo "exponrnent of two numbers ".($x**$y)."<br>";
     // echo "modulus of two numbers ".($x % $y)."<br>";
 
 // assignment operator
@@ -39,8 +39,8 @@
  
 
 //comparision operators
-    // $x = "";
-    // $y =false;
+    // $x = "lioN";
+    // $y ="lion";
     // echo var_dump($x == $y)."<br>";
     // echo var_dump($x === $y)."<br>";
     // echo var_dump($x != $y)."<br>";

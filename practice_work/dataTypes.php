@@ -2,7 +2,6 @@
 //integer datatype
 // $in = 123;
 // echo var_dump($in);
-//<?php ?>
 // $floatvar = 3.14;
 // echo var_dump($floatvar);
 
