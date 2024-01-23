@@ -109,16 +109,16 @@ echo "<pre>";
 
 
     //strcoll is used to compare the strings it returns the number >0,<0,=0 for the result
-    // $str1 = "c";
-    // $str2 = "banana";
+    // $str1 = "canana";
+    // $str2 = "canana";
     // $result = strcoll($str1, $str2);
     // echo $result;
 
     // The strcspn function in PHP is used to find the length of the initial segment of a string that consists entirely of characters not in a given set.
     // it also contains optional parameters of start and the length.
-    // $str1 = "Hel63lo123678";
+    // $str1 = "Hellooo123678";
     // $str2 = "12345";
-    // $length = strcspn($str1, $str2);
+    // $length = strcspn($str1, $str2,6,2);
     // echo "$length";
 
 
