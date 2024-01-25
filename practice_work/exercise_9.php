@@ -14,25 +14,25 @@ function printfib($n){
     }
 
 }
-printfib(100);
+printfib(10);
 
 
-function printfib2($n){
-    $arr = [];
-    for($i=0;$i<$n;$i++){
-        if($n<2){
-            $arr[$i]=$i;
-        }
-        else{
-            $arr[$i]=$arr[$i-1]+$arr[$i-2];
-        }
-    }
-    foreach($arr as $a){
-        echo "$a";
-        echo " ";
-    }
-}
+// function printfib2($n){
+//     $arr = [];
+//     for($i=0;$i<$n;$i++){
+//         if($n<2){
+//             $arr[$i]=$i;
+//         }
+//         else{
+//             $arr[$i]=$arr[$i-1]+$arr[$i-2];
+//         }
+//     }
+//     foreach($arr as $a){
+//         echo "$a";
+//         echo " ";
+//     }
+// }
 
-printfib2(100);
+// printfib2(100);
 
 ?>
