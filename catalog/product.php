@@ -46,15 +46,16 @@ if(!$id==0 and $action=='delete'){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
    <style>
-    label,.label{
+   label, .label {
         display: inline-block;
         width: 120px;
         text-align: right;
     }
- .label label{
-        /* display: inline-block; */
-        text-align: left;
-        width: 70px;
+    .radio label{
+        width: auto;
+    }
+    .radio{
+        padding: 5px;
     }
    </style>
 </head>
@@ -74,17 +75,28 @@ if(!$id==0 and $action=='delete'){
 
         <p>
             <span class="label">product_type:</span>
+            <span class="radio">
             <label for="simple">simple</label>
             <input type="radio" name="group1[product_type]" class="radio_buttons" value="simple"<?php echo isset($data['product_type'])&&$data['product_type'] =='simple' ? 'checked' : ''; ?>checked>
-
+            </span>
+            <span class="radio">
             <label for="bundle">bundle</label>
             <input type="radio" name="group1[product_type]" class="radio_buttons" value="bundle"<?php echo  isset($data['product_type'])&&$data['product_type'] == 'bundle' ? 'checked' : ''; ?>><br>
+            </span>
         </p>
         
         <p>
         <label for="category">category:</label>
             <select name="group1[category]" id="category">
-                <option value="Bar & Game Room" <?php echo isset($data['category'])&&$data['category'] == 'Bar & Game Room' ? 'selected' : ''; ?>>Bar & Game Room</option>
+                <?php
+                $category = select('ccc_category');
+                $Result = mysqli_query($conn, $category);
+                while ($category = mysqli_fetch_assoc($Result)) {
+                    $selected = isset($data['category']) && $data['category'] == $category['name'] ? 'selected' : '';
+                    echo "<option value=\"{$category['name']}\" $selected>{$category['name']}</option>";
+                }
+                ?>
+                <!-- <option value="Bar & Game Room" <?php echo isset($data['category'])&&$data['category'] == 'Bar & Game Room' ? 'selected' : ''; ?>>Bar & Game Room</option>
                 <option value="Bedroom" <?php echo  isset($data['category'])&&$data['category'] == 'Bedroom' ? 'selected' : ''; ?>>Bedroom</option>
                 <option value="Decor" <?php echo  isset($data['category'])&&$data['category'] == 'Decor' ? 'selected' : ''; ?>>Decor</option>
                 <option value="Dining & Kitchen" <?php echo isset($data['category'])&&$data['category'] == 'Dining & Kitchen' ? 'selected' : ''; ?>>Dining & Kitchen</option>
@@ -92,7 +104,7 @@ if(!$id==0 and $action=='delete'){
                 <option value="Living Room" <?php echo  isset($data['category'])&&$data['category'] == 'Living Room' ? 'selected' : ''; ?>>Living Room</option>
                 <option value="Mattresses" <?php echo  isset($data['category'])&&$data['category'] == 'Mattresses' ? 'selected' : ''; ?>>Mattresses</option>
                 <option value="Office" <?php echo  isset($data['category'])&&$data['category'] == 'Office' ? 'selected' : ''; ?>>Office</option>
-                <option value="Outdoor" <?php echo  isset($data['category'])&&$data['category'] == 'Outdoor' ? 'selected' : ''; ?>>Outdoor</option>
+                <option value="Outdoor" <?php echo  isset($data['category'])&&$data['category'] == 'Outdoor' ? 'selected' : ''; ?>>Outdoor</option> -->
             </select><br>
         </p>
 
