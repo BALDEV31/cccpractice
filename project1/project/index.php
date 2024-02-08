@@ -14,7 +14,7 @@ include "Lib/autoLoad.php";
 // 	if(!$request->isPost()) {
 // 		// echo $product->toHtml('product');
 		
-		$product1 = new Model_Product();
+		// $product1 = new Model_Product();
 // 		$query= new Model_Abstract();
 // 		if(!$id==0 and $action=='edit'){
 // 			$pdata = $product1->fetchrow($id);

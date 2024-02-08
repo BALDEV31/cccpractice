@@ -4,3 +4,15 @@ echo str_word_count($quote,0)."<br>";
 echo strtolower($quote)."<br>";
 echo ucwords($quote);
 ?>
+  <?php
+    $condition = true;
+
+    if ($condition) {
+        // Code to be executed if the condition is true
+        echo "Condition is true.";
+        $condition = false;
+    }
+    var_dump($condition);
+
+    // Rest of the code
+    ?>

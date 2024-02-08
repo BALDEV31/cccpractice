@@ -7,7 +7,7 @@ class View_ProductList extends Model_Abstract{
     }
 
     public function toHtml($headings=['Product Name','SKU','Product Type','Category','Manufacturer Cost','Shipping Cost','Total','Price','Status','Created At','Updated At']) {
-        $tableData = $this->getTableData()->getData();
+        $tableData = $this->getTableData()->getAllData();
         // print_r($tableData);
         echo "<table style='border-collapse: collapse; border: 1px solid black;'>";
         echo "<tr style='border: 1px solid black;'>";

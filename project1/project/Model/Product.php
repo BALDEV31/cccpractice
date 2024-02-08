@@ -32,16 +32,12 @@ class Model_Product extends Model_Abstract{
         }
     
 
-    public function getData(){
-        $data = $this->getQueryBuilder()->select($this->tableName,['*']);
-        // echo $data;
-        $data1=$this->getQueryBuilder()->exec($data);
-        return $this->fetchAllRow($data1);
-    }
-
-    public function fetchAllRow($result){
+    public function getAllData(){
         $data =[];
-        while ($row = mysqli_fetch_assoc($result)) {
+        $sql = $this->getQueryBuilder()->select($this->tableName,['*']);
+        // echo $data;
+        $data1=$this->getQueryBuilder()->exec($sql);
+        while ($row = mysqli_fetch_assoc($data1)) {
             $data[] = $row; 
         }
         return $data;

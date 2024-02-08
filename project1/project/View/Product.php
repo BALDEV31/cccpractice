@@ -2,9 +2,11 @@
 // print_r($_POST);
 class View_Product{
     public $newObj;
-    public function __construct($pdata)
+    public function __construct($pdata=null)
     {
-        $this->newObj=new Data_Object($pdata);
+        $pdata=!is_null($pdata)?$pdata:"";
+       print_r($this->newObj=new Data_Object($pdata));
+       print_r($this->newObj->getsku());
     }
     public function createForm(){
         $option1 =['Bar & Game Room','Bedroom','Decor','Dining & Kitchen','Lighting','Living Room','Mattresses','Office','Outdoor'];
@@ -48,7 +50,7 @@ class View_Product{
         $form .= $this->createCalenderDate('Updated At','pdata[updated_at]',$this->newObj->getupdated_at());
         $form .= '</div>';
         $form .= $this->createSubmitButtton('submit');
-        $form .= $this->createHiddenField('pdata[id]', isset($data['id']) ? $data['id'] : '');
+        $form .= $this->createHiddenField('pdata[id]', $this->newObj->getid());
         $form .= '</fieldset>';
         $form .= '</form>';
         return $form;

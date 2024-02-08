@@ -27,7 +27,7 @@ class Model_Request{
     // public function getRequestUri(){
 		public function getRequestUri(){
             $uri = $_SERVER['REQUEST_URI'];
-            $uri = str_replace('/practice/project/','', $uri);
+            $uri = str_replace('/practice/project1/project/','', $uri);
             return $uri;
         }
 	// }
