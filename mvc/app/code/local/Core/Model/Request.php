@@ -6,16 +6,18 @@ class Core_Model_Request{
     protected $_actionName;
     public function __construct()
     {
-        $request = $this->getRequestUri();
-        $url=explode("/", $request);
-        $this->_moduleName=$url[0];
-        $this->_controllerName=$url[1];
-        $this->_actionName=$url[2];
+        $url = $this->getRequestUri();
+        $url=array_filter(explode("/", $url));
+        
+        $this->_moduleName      = isset($url[0]) ? $url[0]:'page';
+        $this->_controllerName  = isset($url[1]) ? $url[1]:'index';
+        $this->_actionName      = isset($url[2]) ? $url[2]:'index';
 
     }
 
     public function getFullControllerClass(){
-        $controllerClass = implode('_', [ucfirst($this->_moduleName), 'Controller', ucfirst($this->_controllerName)]);
+        $strclass = $this->_moduleName.'_Controller_'.$this->_controllerName;
+        $controllerClass = ucwords($strclass,'_');
         return $controllerClass;
     }
 
@@ -50,15 +52,10 @@ class Core_Model_Request{
 		}
 		return false;
 	}
-    // public function getRequestUri(){
 		public function getRequestUri(){
             $uri = $_SERVER['REQUEST_URI'];
             $uri = str_replace('/practice/mvc/','', $uri);
             return $uri;
         }
-	// }
-    // public function getaction($key){
-    //     return $this->getQueryData($key);
-    // }
 }
 ?>

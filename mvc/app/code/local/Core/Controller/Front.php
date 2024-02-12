@@ -8,6 +8,7 @@ class Core_Controller_Front{
         $actionName .= "Action";
 
         $frontControllerClass = $request->getFullControllerClass();
+        // echo $frontControllerClass;
         $frontControllerObj = new $frontControllerClass();
         echo get_class($frontControllerObj);
         $frontControllerObj->$actionName();
