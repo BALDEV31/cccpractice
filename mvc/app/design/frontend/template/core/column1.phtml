@@ -4,10 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <?php echo ($this->getChild('head'))->toHtml()?>
 </head>
 <body>
-    <form action="">
-        <input type="text" name='abc' value="">
-    </form>
+    <div><?php echo ($this->getChildHtml('header'))?></div>
+
+    <div><?php echo ($this->getChildHtml('messages'))?></div>
+
+    <div><?php echo ($this->getChildHtml('content'))?></div>
+
+    <div><?php echo ($this->getChildHtml('footer'))?></div>
 </body>
 </html>
