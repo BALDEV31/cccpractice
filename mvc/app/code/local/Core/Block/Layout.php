@@ -3,7 +3,7 @@ class Core_Block_Layout extends Core_Block_Template{
     
     public function __construct(){
         $this->setTemplate("core/column1.phtml");
-        return $this;
+        // return $this;
     }
     public function prepareChildren(){
 

@@ -54,7 +54,9 @@ class Core_Model_Request{
 	}
 		public function getRequestUri(){
             $uri = $_SERVER['REQUEST_URI'];
+            // $uri = stristr($uri,'?');
             $uri = str_replace('/practice/mvc/','', $uri);
+            $uri = stristr($uri,'?',true);
             return $uri;
         }
 }
