@@ -19,12 +19,12 @@ class Core_Block_Template extends Core_Block_Abstract{
         return $this->getChild($key)->toHtml();
     }
 
-    public function setTemplate($template){
-        $this->template = $template;
-    }
-    public function getTemplate(){
-        return $this->template;
-    }
+    // public function setTemplate($template){
+    //     $this->template = $template;
+    // }
+    // public function getTemplate(){
+    //     return $this->template;
+    // }
 
     public function getRequest(){
         return mage::getModel('core/request');

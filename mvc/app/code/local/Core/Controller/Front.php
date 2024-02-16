@@ -10,7 +10,7 @@ class Core_Controller_Front{
         $frontControllerClass = $request->getFullControllerClass();
         // echo $frontControllerClass;
         $frontControllerObj = new $frontControllerClass();
-        echo get_class($frontControllerObj);
+        // echo get_class($frontControllerObj);
         $frontControllerObj->$actionName();
     }
 }

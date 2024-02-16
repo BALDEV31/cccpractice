@@ -8,9 +8,23 @@ class Product_Model_Resource_Product{
         $this->_primaryKey=$primaryKey;
     }
 
+    public function load($id,$column=null){
+        $sql = "SELECT * FROM {$this->_tableName} WHERE {$this->_primaryKey}={$id} LIMIT 1";
+        // echo $sql;
+        return $this->getAdapter()->fetchRow($sql);
+        
+    }
+
+    public function getAdapter(){
+        return new Core_Model_DB_Adapter();
+    }
     //above part is abstract
     public function __construct(){
         $this->init('ccc_product','id');
+    }
+
+    public function getPrimaryKey(){
+        return $this->_primaryKey;
     }
 }
 ?>
