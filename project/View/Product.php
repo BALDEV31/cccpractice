@@ -48,7 +48,7 @@ class View_Product{
         $form .= $this->createCalenderDate('Updated At','pdata[updated_at]',$this->newObj->getupdated_at());
         $form .= '</div>';
         $form .= $this->createSubmitButtton('submit');
-        $form .= $this->createHiddenField('pdata[id]', isset($data['id']) ? $data['id'] : '');
+        $form .= $this->createHiddenField('pdata[id]', isset($data['id']) ? $this->newObj->getid() : '');
         $form .= '</fieldset>';
         $form .= '</form>';
         return $form;

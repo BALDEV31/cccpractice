@@ -3,6 +3,7 @@ class Core_Block_Abstract{
     public $template;
     public function setTemplate($template){
         $this->template = $template;
+        return $this;
     }
     public function getTemplate(){
         return $this->template;
@@ -25,8 +26,9 @@ class Core_Block_Abstract{
     public function setData($data){
 
     }
-    public function getUrl($action = null, $controller = null, $params = [], $resetParams = false){
-
+    // public function getUrl($action = null, $controller = null, $params = [], $resetParams = false)
+    public function getUrl($path){
+        return "http://localhost/practice/mvc/".$path;
     }
     public function getRequest(){
 

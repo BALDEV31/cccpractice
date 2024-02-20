@@ -11,13 +11,13 @@ class Mage{
 
     public static function getModel($className){
        $className= ucwords(str_replace("/","_Model_", $className),'_');
-       echo $className;
+    //    echo $className;
        return new $className();
     }
 
     public static function getBlock($className){
         $className= ucwords(str_replace('/','_Block_',$className),'_');
-        echo $className;  
+        // echo $className;  
         return new $className();
     }
 

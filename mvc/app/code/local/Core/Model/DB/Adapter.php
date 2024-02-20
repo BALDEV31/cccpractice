@@ -4,7 +4,7 @@ class Core_Model_DB_Adapter{
         "host"=> "localhost",
         "user"=>"root",        
         "password"=> "",
-        "database"=> "ccc_practice",
+        "database"=> "tables",
     ];
 
     public $connect = null;
@@ -13,6 +13,7 @@ class Core_Model_DB_Adapter{
         if(is_null($this->connect)){
             $this->connect = new mysqli($this->config["host"],$this->config["user"],$this->config["password"],$this->config["database"]);
         }
+        return $this->connect;
     }
 
     public function fetchRow($query){
@@ -23,6 +24,16 @@ class Core_Model_DB_Adapter{
             $row = $_row;
         }
         return $row;
+    }
+
+    public function insert($query){
+        // $this->connect();
+        $result = mysqli_query($this->connect(),$query);
+        if($result){
+            return mysqli_insert_id($this->connect());
+        }else{
+            return false;
+        }
     }
 }
 ?>

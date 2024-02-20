@@ -63,17 +63,17 @@ if(!$id==0 and $action=='delete'){
     <form action="product.php" method="post">
     <fieldset>
         <legend>product_details</legend>
-        <p>
+        <div class="">
             <label for="product_name">product_name :</label>
             <input type="text" name="group1[product_name]" id="product_name" value="<?php echo isset($data['product_name'])&&$data['product_name'] ? $data['product_name']: ''; ?>" required> <br>
-        </p>
+        </div>
 
-        <p>
+        <div class="">
             <label for="SKU">SKU :</label>
             <input type="text" name="group1[sku]" id="SKU" value="<?php echo isset($data['sku'])&&$data['sku'] ? $data['sku']:""; ?>"required> <br>
-        </p>
+        </div>
 
-        <p>
+        <div class="">
             <span class="label">product_type:</span>
             <span class="radio">
             <label for="simple">simple</label>
@@ -83,9 +83,9 @@ if(!$id==0 and $action=='delete'){
             <label for="bundle">bundle</label>
             <input type="radio" name="group1[product_type]" class="radio_buttons" value="bundle"<?php echo  isset($data['product_type'])&&$data['product_type'] == 'bundle' ? 'checked' : ''; ?>><br>
             </span>
-        </p>
+        </div>
         
-        <p>
+        <div class="">
         <label for="category">category:</label>
             <select name="group1[category]" id="category">
                 <?php
@@ -106,49 +106,49 @@ if(!$id==0 and $action=='delete'){
                 <option value="Office" <?php echo  isset($data['category'])&&$data['category'] == 'Office' ? 'selected' : ''; ?>>Office</option>
                 <option value="Outdoor" <?php echo  isset($data['category'])&&$data['category'] == 'Outdoor' ? 'selected' : ''; ?>>Outdoor</option> -->
             </select><br>
-        </p>
+        </div>
 
-        <p>
+        <div class="">
             <label for="Manufacturer_Cost"> Manufacturer Cost:</label>
             <input type="text" name="group1[manufacturer_cost]" id=" Manufacturer_Cost" value="<?php echo isset($data['manufacturer_cost'])&&$data['manufacturer_cost'] ?$data['manufacturer_cost']: ""; ?>"required><br>
-        </p>
+        </div>
 
-        <p>
+        <div class="">
             <label for="Shipping_cost">Shipping cost:</label>
             <input type="text" name="group1[shipping_cost]" id="Shipping_cost" value="<?php echo isset($data['shipping_cost'])&&$data['shipping_cost'] ?$data['shipping_cost']: ""; ?>"required><br>
-        </p>
+        </div>
 
-        <p>
+        <div class="">
             <label for="Total_Cost">Total Cost:</label>
             <input type="text" name="group1[total_cost]" id="Total_Cost" value="<?php echo isset($data['total_cost'])&&$data['total_cost'] ?$data['total_cost']: ""; ?>"required><br>
-        </p>
+        </div>
 
-        <p>
+        <div class="">
             <label for="Price">Price :</label>
             <input type="text" name="group1[price]" id="Price" value="<?php echo isset($data['price'])&&$data['price'] ?$data['price']: ""; ?>"required><br>
-        </p>
+        </div>
 
-        <p>
+        <div class="">
             <label for="Status">Status:</label>
                 <select name="group1[status]" id="Status">
                     <option value="enabled"<?php echo isset($data['status'])&&$data['status']=='enabled'?'selected':'';?>>enabled</option>
                     <option value="disabled"<?php echo isset($data['status'])&&$data['status']=='disabled'?'selected':'';?>>disabled</option>
                 </select><br>
-        </p>
+        </div>
 
-        <p>
+        <div class="">
             <label for="Created_At">Created_At :</label>
             <input type="Date" id="Created_At" name="group1[created_at]" value="<?php echo isset($data['created_at'])&&$data['created_at'] ?$data['created_at']: ""; ?>"required></inPut><br>
-        </p>
+        </div>
 
-        <p>
+        <div class="">
             <label for="Updated_At">Updated_At :</label>
             <input type="Date" id="Updated_At" name="group1[updated_at]" value="<?php echo isset($data['updated_at'])&&$data['updated_at'] ?$data['updated_at']: ""; ?>"required></inPut><br>
-        </p>
+        </div>
             <input type="hidden" name="group1[id]" value="<?php echo $id; ?>">
-        <p>
+        <div class="">
             <input type="submit" value="submit">
-        </p>
+        </div>
     </fieldset>
     </form>
 </body>
