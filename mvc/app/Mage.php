@@ -1,6 +1,7 @@
 <?php
 class Mage{
     public static $baseDir='D:/xampp/htdocs/practice/mvc';
+    public static $baseUrl = 'http://localhost/practice/mvc';
     public static function init(){
         // $request=new Core_Model_Request();
         // $request=Mage::getModel("core/request");
@@ -37,6 +38,12 @@ class Mage{
         }
         return self::$baseDir;
 }
+    public static function getBaseUrl($subUrl=null){
+        if(($subUrl)){
+            return self::$baseUrl.'/'.$subUrl;
+        }
+        return self::$baseUrl;
+    }
 }
 
 ?>

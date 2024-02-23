@@ -7,15 +7,19 @@
     <?php echo ($this->getChildHtml('head'))?>
 </head>
 <body>
-    <!-- <?php echo get_class($this) ?> -->
-    <div><?php echo ($this->getChildHtml('header'))?></div>
+<div>
+        <?php echo $this->getChildHtml('header'); ?>
+    </div>
 
-    <div><?php echo ($this->getChildHtml('messages'))?></div>
-
-    <div><?php echo ($this->getChildHtml('content'))?></div>
-
-    <div><?php echo ($this->getChildHtml('footer'))?></div>
-
+    <div>
+        <?php echo $this->getChildHtml('messages'); ?>
+    </div>
+    <div>
+        <?php echo $this->getChildHtml('content'); ?>
+    </div>
+    <div>
+        <?php echo $this->getChildHtml('footer'); ?>
+    </div>
 
 </body>
 </html>

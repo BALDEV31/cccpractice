@@ -33,9 +33,18 @@ class Core_Model_Request{
         return $this->_actionName;
     }
 
-    public function getParams($key=''){
-        return ($key == '')? $_REQUEST : (isset($_REQUEST[$key])? $_REQUEST[$key]: '');
-    }
+    // public function getParams($key=''){
+    //     return ($key == '')? $_REQUEST : (isset($_REQUEST[$key])? $_REQUEST[$key]: '');
+    // }
+
+    public function getParams($key = '', $arg = null) {
+		return ($key == '')
+			? $_REQUEST
+			: (isset($_REQUEST[$key])
+				? $_REQUEST[$key]
+				: ((!is_null($arg)) ? $arg : '')
+			);
+	}
 
     public function getPostData($key=''){
         return ($key == '')? $_POST : (isset($_POST[$key])? $_POST[$key]: '');
@@ -53,11 +62,13 @@ class Core_Model_Request{
 		return false;
 	}
 		public function getRequestUri(){
-            $uri = $_SERVER['REQUEST_URI'];
-            // $uri = stristr($uri,'?');
-            $uri = str_replace('/practice/mvc/','', $uri);
-            $uri = stristr($uri,'?',true);
-            return $uri;
+            $requst = $_SERVER["REQUEST_URI"];
+            $arr = str_replace("/practice/mvc/", "", $requst);
+            // echo $arr;
+            if (strpos($arr, "?") !== false)
+                $arr = stristr($arr, "?", true);
+
+            return $arr;
         }
 }
 ?>

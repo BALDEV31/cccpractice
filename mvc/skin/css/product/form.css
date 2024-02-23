@@ -1,0 +1,91 @@
+/* Reset some default styles and apply a background color to the form */
+body, h2, form {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.form {
+    width: 50%;
+    margin: 50px auto;
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+.row {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+input[type="text"],
+input[type="number"],
+textarea,
+input[type="file"],
+input[type="submit"] {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+input[type="submit"] {
+    background-color: #4caf50;
+    color: #fff;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* ... (Previous CSS code) ... */
+
+/* Hover effect for buttons */
+input[type="submit"]:hover {
+    background-color: #45a049;
+    color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover effect for form fields */
+input[type="text"]:hover,
+input[type="number"]:hover,
+textarea:hover {
+    border-color: #66afe9;
+    transition: border-color 0.3s ease;
+}
+
+/* Hover effect for labels */
+label:hover {
+    color: #007bff;
+    transition: color 0.3s ease;
+}
+
+.validation-message {
+    color: #ff0000; /* Red color for error messages */
+    margin-top: 5px;
+}
+
+/* ... (Remaining CSS code) ... */

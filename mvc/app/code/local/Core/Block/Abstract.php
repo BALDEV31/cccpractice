@@ -37,5 +37,6 @@ class Core_Block_Abstract{
          include Mage::getBaseDir('app') . '/design/frontend/template/' . $this->getTemplate();
     }
 
+
 }
 ?>

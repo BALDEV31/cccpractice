@@ -31,9 +31,9 @@ class Core_Block_Layout extends Core_Block_Template{
        return mage::getBlock($className);
     }
 
-    // public function getRequest(){
-    //     return mage::getModel('core/request');
-    // }
+    public function getRequest(){
+        return mage::getModel('core/request');
+    }
 
 }
 ?>
