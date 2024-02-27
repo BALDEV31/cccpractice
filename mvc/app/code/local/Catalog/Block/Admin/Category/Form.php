@@ -8,10 +8,16 @@ class Catalog_Block_Admin_Category_Form extends Core_Block_Template{
     }
 
     public function getProduct(){
-        $product_id = $this->getRequest()->getParams('id');
-        // echo $product_id;
-        $product = isset($product_id) ? ($product_id) : null;
-        $data = $product ? Mage::getModel('catalog/product')->load($product): Mage::getModel('catalog/product');
+        $data= Mage::getModel('catalog/category')
+        ->load($this->getRequest()->getParams('id',0));
         return $data;
     }
+
+    // public function getProduct(){
+    //     $product_id = $this->getRequest()->getParams('id');
+    //     // echo $product_id;
+    //     $product = isset($product_id) ? ($product_id) : null;
+    //     $data = $product ? Mage::getModel('catalog/product')->load($product): Mage::getModel('catalog/product');
+    //     return $data;
+    // }
 }

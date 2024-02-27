@@ -18,12 +18,24 @@ class Core_Model_DB_Adapter
         return $this->connect;
     }
 
+    public function fetchAll($query)
+    {
+        $row=[];
+        $result = $this->connect()->query($query);
+        while($_row = mysqli_fetch_assoc($result)){
+            $row[] = $_row;
+        }
+        return $row;
+    }
+
     public function fetchRow($query)
     {
         $row = [];
         $this->connect();
         $result = mysqli_query($this->connect, $query);
-        while ($_row = mysqli_fetch_assoc($result)) {
+        // var_dump($query);
+        // var_dump($result);
+        while ($_row = mysqli_fetch_assoc($result)){
             $row = $_row;
         }
         return $row;
@@ -32,7 +44,7 @@ class Core_Model_DB_Adapter
     public function insert($query)
     {
         // $this->connect();
-        echo 'inside insert';
+        // echo 'inside insert';
         $result = mysqli_query($this->connect(), $query);
         if ($result) {
             return mysqli_insert_id($this->connect());
@@ -42,10 +54,10 @@ class Core_Model_DB_Adapter
     }
 
     public function update($query){
-        echo 'inside update';
+        // echo 'inside update';
         $result = mysqli_query($this->connect(), $query);
         if ($result) {
-            echo 'inside if';
+            // echo 'inside if';
             return true;
         } else {
             return false;
@@ -54,13 +66,9 @@ class Core_Model_DB_Adapter
 
     public function delete($query)
     {   
-        echo '<pre>';
-        echo $query;
-        echo "inside";
         $result = mysqli_query($this->connect(), $query);
         // print_r($result);
         if ($result) {
-            echo"inside delete";
             return mysqli_affected_rows($this->connect());
         } else {
             return false;

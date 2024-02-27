@@ -48,6 +48,10 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Front_Action
 
     public function listAction(){
         $layout= $this->getLayout();
+        $layout->getChild('head');
+        $layout->getChild('head')->addCss('navigation.css');
+        $layout->getChild('head')->addCss('footer.css');
+        $layout->getChild('head')->addCss('product/list.css');
         $child = $layout->getChild('content');
 
         $productForm = $layout->createBlock('catalog/admin_product_list');

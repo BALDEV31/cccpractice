@@ -19,21 +19,43 @@ class Admin_Controller_Catalog_Category extends Core_Controller_Front_Action
     public function saveAction()
     {
         // echo "<pre>";
-        $data = $this->getRequest()->getParams('catalog_product');
+        $data = $this->getRequest()->getParams('catalog_category');
         $product = Mage::getModel('catalog/category')
             ->setData($data);
         $product->save();
         // print_r($data);
     }
 
+    // public function deleteAction()
+    // {
+    //     // echo "<pre>";
+    //     $id = $this->getRequest()->getParams('id');
+    //     // echo $id;
+    //     Mage::getModel('catalog/category')
+    //         ->setId($id)->delete();
+    //     // print_r($product);
+    // }
+
     public function deleteAction()
     {
         // echo "<pre>";
         $id = $this->getRequest()->getParams('id');
         // echo $id;
-        Mage::getModel('catalog/category')
-            ->setId($id)->delete();
+       $product = Mage::getModel('catalog/category')->load($id);
+            $product->delete();
         // print_r($product);
+    }
+    public function listAction(){
+        $layout= $this->getLayout();
+        $layout->getChild('head');
+        $layout->getChild('head')->addCss('navigation.css');
+        $layout->getChild('head')->addCss('footer.css');
+        $layout->getChild('head')->addCss('category/list.css');
+        $child = $layout->getChild('content');
+
+        $categoryForm = $layout->createBlock('catalog/admin_category_list');
+        $child->addChild('list', $categoryForm);
+        $layout->toHtml();
     }
 }
 ?>

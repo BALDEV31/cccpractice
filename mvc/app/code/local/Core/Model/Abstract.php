@@ -31,15 +31,17 @@ class Core_Model_Abstract
     }
     public function getResource()
     {
-        // echo get_class($this);
-        // $class = substr(get_class($this), strpos(get_class($this), "_Model_")+7)."_Model_Resource_".substr(get_class($this), strpos(get_class($this), "_Model_")+7);
-        // // $class = stristr(get_class($this),'_model_',true)."_Model_Resource_Product";
-        // // echo $class;
-        // return new $class();
         return new $this->_resourceClass();
     }
+    
     public function getCollection()
     {
+        $collection = new $this->_collectionClass();
+        $collection->setResource($this->getResource());
+        // echo get_class($this);
+        $collection->setModel(get_class($this));
+        $collection->select();
+        return $collection;
     }
 
     public function getTableName()
@@ -83,11 +85,10 @@ class Core_Model_Abstract
     }
     public function removeData($data)
     {
-        $this->_data = $data;
-        return $this;
     }
     public function save()
     {
+        // echo 'save';
         $this->getResource()->save($this);
         return $this;
     }
@@ -103,6 +104,7 @@ class Core_Model_Abstract
         if ($this->getId()) {
             $this->getResource()->delete($this);
         }
+        // echo "doe";
         return $this;
     }
 

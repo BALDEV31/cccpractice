@@ -1,0 +1,44 @@
+<?php
+$productModel =Mage::getModel("catalog/category")->getCollection();
+// $productModel->addFieldToFilter('name', 'Dress');
+// $productModel->getData();
+//  echo "<pre>";
+// // print_r($productModel);
+//  foreach ($productModel->getData() as $product) {
+//       $product->delete();
+// }?>
+<!-- <?php echo get_class($productModel) ?> -->
+<div class="list">
+    <h2>Product List</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Category_Id</th>
+                <th>Category_Name</th>
+                <th>Status</th>
+                <th class="action" colspan="2">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($productModel->getData() as $_product): ?>
+                <tr>
+                    <td>
+                        <?php echo $_product->getCategoryId() ?>
+                    </td>
+                    <td>
+                        <?php echo $_product->getCategoryName() ?>
+                    </td>
+                    <td>
+                        <?php echo $_product->getStatus() ?>
+                    </td>
+                    <td><a
+                            href="<?php echo $this->getUrl("admin/catalog_category/delete?id={$_product->getId()}") ?>">Delete</a>
+                    </td>
+                    <td><a
+                            href="<?php echo $this->getUrl("admin/catalog_category/form?id={$_product->getId()}") ?>">Update</a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>

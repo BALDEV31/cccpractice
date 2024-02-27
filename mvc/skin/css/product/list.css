@@ -1,0 +1,44 @@
+/* Basic table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  th, td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: left;
+  }
+  
+  /* Header styling */
+  th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  /* Action column styling */
+  th.action, td.action {
+    text-align: center;
+  }
+  
+  td.action a {
+    margin-left: 10px;
+  }
+  
+  /* Overall list container */
+  .list {
+    width: 80%; /* Adjust as needed */
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+  }
+  
+  /* Header within the list */
+  .list h2 {
+    margin-top: 0;
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+
+  

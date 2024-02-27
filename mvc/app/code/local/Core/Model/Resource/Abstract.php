@@ -16,24 +16,26 @@ class Core_Model_Resource_Abstract
     }
 
     public function save(Core_Model_Abstract $abstract)
-    {echo'<pre>';
+    {
+        // echo '<pre>';
         $data = $abstract->getData();
-        print_r($data);
-        die();
-        if (isset($data[$this->getPrimaryKey()])) {
+        // print_r($data);
+        if (($data[$this->getPrimaryKey()])) {
             $sql = $this->updateSql($this->getTableName(), $data, [$this->getPrimaryKey() => $abstract->getId()]);
             $this->getAdapter()->update($sql);
         } else {
+            // echo 'insert';
             $sql = $this->insertSql($this->getTableName(), $data);
             $id = $this->getAdapter()->insert($sql);
             $abstract->setId($id);
-            var_dump($id);
+            // var_dump($id);
         }
     }
 
     public function delete(Core_Model_Abstract $abstract)
     {
         $data = $abstract->getId();
+        // echo $data;
         $query = $this->deleteSql($this->getTableName(), [$this->getPrimaryKey() => $data]);
         $this->getAdapter()->delete($query);
     }
@@ -97,7 +99,8 @@ class Core_Model_Resource_Abstract
 
 
     public function getPrimaryKey()
-    {
+    {   
+        // var_dump($this->_primaryKey);
         return $this->_primaryKey;
     }
 }

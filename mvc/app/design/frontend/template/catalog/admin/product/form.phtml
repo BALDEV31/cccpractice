@@ -1,81 +1,85 @@
 <div class="form">
     <h2>Product Form</h2>
-    <form method="POST" action="<?php echo $this->getUrl('admin/catalog_product/save') ?>" >
+    <form method="POST" action="<?php echo $this->getUrl('admin/catalog_product/save') ?>">
         <div class="row">
-            <input type="hidden" name="catalog_product[product_id]" value="<?php echo $this->data->getproduct_id()?>">
+            <input type="hidden" name="catalog_product[product_id]" value="<?php echo $this->data->getProductId() ?>">
         </div>
         <div class="row">
             <label for="sku">SKU:</label>
-            <input type="text" name="catalog_product[sku]" id="sku" value="<?php echo $this->data->getsku()?>">
+            <input type="text" name="catalog_product[sku]" id="sku" value="<?php echo $this->data->getSku() ?>">
         </div>
         <div class="row">
             <label for="name">Name:</label>
-            <input type="text" name="catalog_product[name]" id="name" value="<?php echo $this->data->getname()?>">
+            <input type="text" name="catalog_product[name]" id="name" value="<?php echo $this->data->getName() ?>">
         </div>
 
         <div class="row">
             <label for="color">Color:</label>
-            <input type="text" name="catalog_product[color]" id="color" value="<?php echo $this->data->getcolor() ?>">
+            <input type="text" name="catalog_product[color]" id="color" value="<?php echo $this->data->getColor() ?>">
         </div>
 
         <div class="row">
             <label for="size">Size:</label>
-            <input type="text" name="catalog_product[size]" id="size" value="<?php echo $this->data->getsize() ?>">
+            <input type="text" name="catalog_product[size]" id="size" value="<?php echo $this->data->getSize() ?>">
         </div>
 
         <div class="row">
             <label for="description">Description:</label>
-            <textarea name="catalog_product[description]" id="description" cols="30" rows="10" value="<?php echo $this->data->getdescription() ?>"></textarea>
+            <textarea name="catalog_product[description]" id="description" cols="30" rows="10" value="<?php echo $this->data->getDescription() ?>"><?php echo $this->data->getDescription() ?></textarea>
         </div>
 
         <div class="row">
             <label for="image_link">Image Link:</label>
-            <input type="file" name="catalog_product[image_link]" id="image_link" value="<?php echo $this->data->getimage_link() ?>">
+            <input type="file" name="catalog_product[image_link]" id="image_link" value="<?php echo $this->data->getImageLink() ?>">
         </div>
 
         <div class="row">
             <label for="link">Link:</label>
-            <input type="file" name="catalog_product[link]" id="link" value="<?php echo $this->data->getlink() ?>">
+            <input type="file" name="catalog_product[link]" id="link" value="<?php echo $this->data->getLink() ?>">
         </div>
 
         <div class="row">
             <label for="price">Price:</label>
-            <input type="number" name="catalog_product[price]" id="price" value="<?php echo $this->data->getprice() ?>">
+            <input type="number" name="catalog_product[price]" id="price" value="<?php echo $this->data->getPrice() ?>">
         </div>
 
         <div class="row">
             <label for="mfr_cost">MFR Cost:</label>
-            <input type="number" name="catalog_product[mfr_cost]" id="mfr_cost" value="<?php echo $this->data->getmfr_cost() ?>">
+            <input type="number" name="catalog_product[mfr_cost]" id="mfr_cost" value="<?php echo $this->data->getMfrCost() ?>">
         </div>
 
         <div class="row">
             <label for="shipping_cost">Shipping Cost:</label>
-            <input type="number" name="catalog_product[shipping_cost]" id="shipping_cost" value="<?php echo $this->data->getshipping_cost() ?>">
+            <input type="number" name="catalog_product[shipping_cost]" id="shipping_cost" value="<?php echo $this->data->getShippingCost() ?>">
         </div>
 
         <div class="row">
             <label for="total_cost">Total Cost:</label>
-            <input type="number" name="catalog_product[total_cost]" id="total_cost" value="<?php echo $this->data->gettotal_cost() ?>">
+            <input type="number" name="catalog_product[total_cost]" id="total_cost" value="<?php echo $this->data->getTotalCost() ?>">
         </div>
 
         <div class="row">
             <label for="margin_percentage">Margin Percentage:</label>
-            <input type="number" name="catalog_product[margin_percentage]" id="margin_percentage" value="<?php echo $this->data->getmargin_percentage() ?>">
+            <input type="number" name="catalog_product[margin_percentage]" id="margin_percentage" value="<?php echo $this->data->getMarginPercentage() ?>">
         </div>
 
         <div class="row">
             <label for="min_price">Min Price:</label>
-            <input type="number" name="catalog_product[min_price]" id="min_price" value="<?php echo $this->data->getmin_price() ?>">
+            <input type="number" name="catalog_product[min_price]" id="min_price" value="<?php echo $this->data->getMinPrice() ?>">
         </div>
 
         <div class="row">
             <label for="status">Status:</label>
-            <input type="text" name="catalog_product[status]" id="status" value="<?php echo $this->data->getstatus() ?>">
+            <select name="catalog_product[status]" id="status">
+                <option value="1" <?php echo ($this->data->getStatus() === 'Enable') ? 'selected' : ''; ?>>Enable</option>
+                <option value="0" <?php echo ($this->data->getStatus() === 'Disable') ? 'selected' : ''; ?>>Disable</option>
+            </select>
         </div>
+
 
         <div class="row">
             <input type="submit" name="submit" value="Submit">
         </div>
-        
+
     </form>
 </div>
