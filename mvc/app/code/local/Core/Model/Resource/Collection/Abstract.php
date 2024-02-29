@@ -69,6 +69,7 @@ class Core_Model_Resource_Collection_Abstract
         }
         // echo $sql;
         $result = $this->_resource->getAdapter()->fetchAll($sql);
+        // var_dump($result);
         foreach ($result as $row) {
             // $this->_data[] = Mage::getModel('catalog/product')->setData($row);
             // var_dump($this->_model);

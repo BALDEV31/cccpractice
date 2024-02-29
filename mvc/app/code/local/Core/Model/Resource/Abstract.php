@@ -20,7 +20,7 @@ class Core_Model_Resource_Abstract
         // echo '<pre>';
         $data = $abstract->getData();
         // print_r($data);
-        if (($data[$this->getPrimaryKey()])) {
+        if (isset($data[$this->getPrimaryKey()])) {
             $sql = $this->updateSql($this->getTableName(), $data, [$this->getPrimaryKey() => $abstract->getId()]);
             $this->getAdapter()->update($sql);
         } else {

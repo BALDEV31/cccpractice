@@ -1,21 +1,21 @@
 <div class="container">
-  <!-- <?php echo '<pre>'?>
-  <?php var_dump($this->data)?> -->
-<form method="post" action="<?php echo $this->getUrl('admin/catalog_category/save') ?>">
-    <div class="form-field">
-      <input type="hidden" id="category_id" name="catalog_category[category_id]" placeholder="Enter category ID" value="<?php echo $this->data->getCategoryId() ?>">
-    </div>
-    <div class="form-field">
-      <label for="category_name">Category Name:</label>
-      <input type="text" id="category_name" name="catalog_category[category_name]" placeholder="Enter category name" value="<?php echo $this->data->getCategoryName() ?>">
-    </div>
-    <div class="form-field">
+    <!-- <?php echo '<pre>'?>
+    <?php var_dump($this->data)?> -->
+    <form method="post" action="<?php echo $this->getUrl('admin/catalog_category/save') ?>">
+        <div class="form-field">
+            <input type="hidden" id="category_id" name="catalog_category[category_id]" placeholder="Enter category ID" value="<?php echo $this->data->getCategoryId() ?>">
+        </div>
+        <div class="form-field">
+            <label for="category_name">Category Name:</label>
+            <input type="text" id="category_name" name="catalog_category[category_name]" placeholder="Enter category name" value="<?php echo $this->data->getCategoryName() ?>">
+        </div>
+        <div class="form-field">
             <label for="status">Status:</label>
             <select name="catalog_category[status]" id="status">
                 <option value="1" <?php echo ($this->data->getStatus() == 'Enable') ? 'selected' : ''?>>Enable</option>
                 <option value="0" <?php echo ($this->data->getStatus() == 'Disable') ? 'selected' : '' ?>>Disable</option>
             </select>
         </div>
-    <button type="submit">Submit</button>
-  </form>
+        <button type="submit">Submit</button>
+    </form>
 </div>
