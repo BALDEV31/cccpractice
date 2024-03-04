@@ -55,6 +55,6 @@ class Mage
         if (($subUrl)) {
             return self::$baseUrl . '/' . $subUrl;
         }
-        return self::$baseUrl;
+        return self::$baseUrl.'/';
     }
 }

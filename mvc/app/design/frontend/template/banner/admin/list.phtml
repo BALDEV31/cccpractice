@@ -1,0 +1,42 @@
+<?php
+$productModel = Mage::getModel("banner/banner")->getCollection();
+// $productModel->addFieldToFilter('name', 'Dress');
+// $productModel->getData();
+//  echo "<pre>";
+// // print_r($productModel);
+//  foreach ($productModel->getData() as $product) {
+//       $product->delete();
+// }
+?>
+<!-- <?php echo get_class($productModel) ?> -->
+<div class="list">
+    <h2>Banner List</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Banner_Id</th>
+                <th>Banner_Image</th>
+                <th>Status</th>
+                <th class="action" colspan="2">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($productModel->getData() as $_product) : ?>
+                <tr>
+                    <td>
+                        <?php echo $_product->getBannerId() ?>
+                    </td>
+                    <td>
+                        <?php echo $_product->getBannerImage() ?>
+                    </td>
+                    <td>
+                        <?php echo $_product->getStatus() ?>
+                    </td>
+                    <td><a class="button update" href="<?php echo $this->getUrl("admin/banner/form?id={$_product->getId()}") ?>">Update</a></td>
+                    <td><a class="button delete" href="<?php echo $this->getUrl("admin/banner/delete?id={$_product->getId()}") ?>">Delete</a></td>
+
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>

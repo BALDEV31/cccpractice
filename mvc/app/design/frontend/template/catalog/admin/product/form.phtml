@@ -1,73 +1,94 @@
 <div class="form">
-    <h2>Product Form</h2>
-    <form method="POST" action="<?php echo $this->getUrl('admin/catalog_product/save') ?>">
-        <div class="row">
-            <input type="hidden" name="catalog_product[product_id]" value="<?php echo $this->data->getProductId() ?>">
-        </div>
-        <div class="row">
-            <label for="sku">SKU:</label>
-            <input type="text" name="catalog_product[sku]" id="sku" value="<?php echo $this->data->getSku() ?>">
-        </div>
-        <div class="row">
-            <label for="name">Name:</label>
-            <input type="text" name="catalog_product[name]" id="name" value="<?php echo $this->data->getName() ?>">
-        </div>
+    <form action="<?php echo $this->getUrl('admin/catalog_product/save') ?>" method="post" enctype="multipart/form-data">
 
-        <div class="row">
-            <label for="color">Color:</label>
-            <input type="text" name="catalog_product[color]" id="color" value="<?php echo $this->data->getColor() ?>">
-        </div>
+        <!-- Hidden field for product_id -->
+        <input type="hidden" name="catalog_product[product_id]" value="<?php echo $this->data->getProductId() ?>">
 
-        <div class="row">
-            <label for="size">Size:</label>
-            <input type="text" name="catalog_product[size]" id="size" value="<?php echo $this->data->getSize() ?>">
-        </div>
+        <!-- SKU -->
+        <label for="sku">SKU:</label>
+        <input type="text" name="catalog_product[sku]" id="sku" value="<?php echo $this->data->getSku() ?>" required>
+        <br>
 
-        <div class="row">
-            <label for="description">Description:</label>
-            <textarea name="catalog_product[description]" id="description" cols="30" rows="10" value="<?php echo $this->data->getDescription() ?>"><?php echo $this->data->getDescription() ?></textarea>
-        </div>
+        <!-- Name -->
+        <label for="name">Name:</label>
+        <input type="text" name="catalog_product[name]" id="name" value="<?php echo $this->data->getName() ?>" required>
+        <br>
 
-        <div class="row">
-            <label for="image_link">Image Link:</label>
-            <input type="file" name="catalog_product[image_link]" id="image_link" value="<?php echo $this->data->getImageLink() ?>">
-        </div>
+        <!-- Color -->
+        <label for="color">Color:</label>
+        <input type="text" name="catalog_product[color]" id="color" value="<?php echo $this->data->getColor() ?>" required>
+        <br>
 
-        <div class="row">
-            <label for="link">Link:</label>
-            <input type="file" name="catalog_product[link]" id="link" value="<?php echo $this->data->getLink() ?>">
-        </div>
+        <!-- Size -->
+        <label for="size">Size:</label>
+        <input type="text" name="catalog_product[size]" id="size" value="<?php echo $this->data->getSize() ?>" required>
+        <br>
 
-        <div class="row">
-            <label for="price">Price:</label>
-            <input type="number" name="catalog_product[price]" id="price" value="<?php echo $this->data->getPrice() ?>">
-        </div>
+        <!-- Description -->
+        <label for="description">Description:</label>
+        <textarea name="catalog_product[description]" id="description" value="<?php echo $this->data->getDescription() ?>" required><?php echo $this->data->getDescription() ?></textarea>
+        <br>
 
-        <div class="row">
-            <label for="mfr_cost">MFR Cost:</label>
-            <input type="number" name="catalog_product[mfr_cost]" id="mfr_cost" value="<?php echo $this->data->getMfrCost() ?>">
-        </div>
+        <!-- Image -->
+        <label for="image">Image:</label>
+        <input type="file" name="catalog_product[image_link]" id="image" value="<?php echo $this->data->getImage() ?>" accept="image/*">
+        <br>
+        <?php
+        if (!is_null($this->data->getImageLink())) {
+            echo "<img src='" . Mage::getBaseUrl('media/banner/') . $this->data->getBannerImage() . "' alt='Uploaded Image' height=100px width=200px>";
+        }
+        ?>
 
-        <div class="row">
-            <label for="shipping_cost">Shipping Cost:</label>
-            <input type="number" name="catalog_product[shipping_cost]" id="shipping_cost" value="<?php echo $this->data->getShippingCost() ?>">
-        </div>
+        <!-- Link -->
+        <label for="link">Link:</label>
+        <input type="text" name="catalog_product[link]" id="link" value="<?php echo $this->data->getLink() ?>" required>
+        <br>
 
-        <div class="row">
-            <label for="total_cost">Total Cost:</label>
-            <input type="number" name="catalog_product[total_cost]" id="total_cost" value="<?php echo $this->data->getTotalCost() ?>">
-        </div>
+        <!-- Category dropdown -->
+        <label for="category">Category:</label>
+        <select name="catalog_product[category_id]" id="category">
+            <?php
+            $categories = Mage::getModel('catalog/category')->getCollection()->getData();
+            foreach ($categories as $category) {
+                echo '<option value=" ' . $category->getCategoryId() . '">' . $category->getCategoryName() . '</option>';
+            }
+            ?>
+        </select>
+        <br>
 
-        <div class="row">
-            <label for="margin_percentage">Margin Percentage:</label>
-            <input type="number" name="catalog_product[margin_percentage]" id="margin_percentage" value="<?php echo $this->data->getMarginPercentage() ?>">
-        </div>
 
-        <div class="row">
-            <label for="min_price">Min Price:</label>
-            <input type="number" name="catalog_product[min_price]" id="min_price" value="<?php echo $this->data->getMinPrice() ?>">
-        </div>
+        <!-- Price -->
+        <label for="price">Price:</label>
+        <input type="text" name="catalog_product[price]" id="price" value="<?php echo $this->data->getPrice() ?>" required>
 
+        <br>
+
+        <!-- Mfr Cost -->
+        <label for="mfr_cost">Manufacturer Cost:</label>
+        <input type="text" name="catalog_product[mfr_cost]" id="mfr_cost" value="<?php echo $this->data->getMfrCost() ?>" required>
+        <br>
+
+        <!-- Shipping Cost -->
+        <label for="shipping_cost">Shipping Cost:</label>
+        <input type="text" name="catalog_product[shipping_cost]" id="shipping_cost" value="<?php echo $this->data->getShippingCost() ?>" required>
+        <br>
+
+        <!-- Total Cost -->
+        <label for="total_cost">Total Cost:</label>
+        <input type="text" name="catalog_product[total_cost]" id="total_cost" value="<?php echo $this->data->getTotalCost() ?>" required>
+        <br>
+
+        <!-- Margin Percentage -->
+        <label for="margin_percentage">Margin Percentage:</label>
+        <input type="text" name="catalog_product[margin_percentage]" id="margin_percentage" value="<?php echo $this->data->getMarginPercentage() ?>" required>
+        <br>
+
+        <!-- Min Price -->
+        <label for="min_price">Min Price:</label>
+        <input type="text" name="catalog_product[min_price]" id="min_price" value="<?php echo $this->data->getMinPrice() ?>" required>
+        <br>
+
+        <!-- Status dropdown -->
         <div class="row">
             <label for="status">Status:</label>
             <select name="catalog_product[status]" id="status">
@@ -76,10 +97,8 @@
             </select>
         </div>
 
-
-        <div class="row">
-            <input type="submit" name="submit" value="Submit">
-        </div>
+        <!-- Submit button -->
+        <input type="submit" value="Submit">
 
     </form>
 </div>

@@ -1,6 +1,7 @@
 <?php
 class Core_Block_Abstract{
     public $template;
+    protected $_data='';
     public function setTemplate($template){
         $this->template = $template;
         return $this;
@@ -21,10 +22,11 @@ class Core_Block_Abstract{
 
     }
     public function getData($key=null){
-
+        return $this->_data;
     }
     public function setData($data){
-
+        $this->_data = $data;
+        return $this;
     }
     // public function getUrl($action = null, $controller = null, $params = [], $resetParams = false)
     public function getUrl($path){

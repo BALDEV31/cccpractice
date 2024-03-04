@@ -49,6 +49,9 @@ class Core_Model_Request{
     public function getPostData($key=''){
         return ($key == '')? $_POST : (isset($_POST[$key])? $_POST[$key]: '');
     }
+    public function getFileData($key=''){
+        return ($key == '')? $_FILES : (isset($_FILES[$key])? $_FILES[$key]: '');
+    }
 
     public function getQueryData($key=''){
         return ($key == '')? $_GET : (isset($_GET[$key])? $_GET[$key]: '');

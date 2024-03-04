@@ -28,11 +28,11 @@ class Core_Block_Layout extends Core_Block_Template{
         $this->addChild('messages',$messages);
     }
     public function createBlock($className){
-       return mage::getBlock($className);
+       return Mage::getBlock($className);
     }
 
     public function getRequest(){
-        return mage::getModel('core/request');
+        return Mage::getModel('core/request');
     }
 
 }

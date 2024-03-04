@@ -87,7 +87,7 @@ class Core_Model_Abstract
     {
     }
     public function save()
-    {
+    {   
         $this->getResource()->save($this);
         return $this;
     }

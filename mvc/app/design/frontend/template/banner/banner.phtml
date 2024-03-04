@@ -1,1 +1,6 @@
-banner phtml
+<?php
+$banner = $this->getBannerList();
+foreach ($banner as $_banner) {
+    echo "<img src='". Mage::getBaseUrl('media/banner/'). $_banner->getBannerImage()."' alt='Uploaded Image' width=750px>";
+    echo '<br>';
+}

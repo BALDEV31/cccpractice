@@ -20,12 +20,13 @@ class Core_Model_Resource_Abstract
         // echo '<pre>';
         $data = $abstract->getData();
         // print_r($data);
-        if (isset($data[$this->getPrimaryKey()])) {
+        if (isset($data[$this->getPrimaryKey()])?$data[$this->getPrimaryKey()]:'') {
             $sql = $this->updateSql($this->getTableName(), $data, [$this->getPrimaryKey() => $abstract->getId()]);
             $this->getAdapter()->update($sql);
         } else {
-            // echo 'insert';
+            echo 'insert';
             $sql = $this->insertSql($this->getTableName(), $data);
+            var_dump($sql);
             $id = $this->getAdapter()->insert($sql);
             $abstract->setId($id);
             // var_dump($id);

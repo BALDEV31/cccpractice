@@ -1,6 +1,15 @@
 <?php
 class Customer_Controller_Account extends Core_Controller_Front_Action
 {
+    protected $_allowedActions = ['login','register'];
+
+    public function init(){
+        // $this->getRequest()->getActionName();
+        if(!in_array($this->getRequest()->getActionName(), $this->_allowedActions )&& 
+        !Mage::getSingleton('core/session')->get('logged_in_customer_id')){
+            $this->setRedirect('customer/account/login');
+        }
+    }
     public function registerAction()
     {
         $layout = $this->getLayout();
@@ -45,14 +54,12 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
 
                 // echo $count;
                 if ($count) {
-                    $address = Mage::getBaseUrl('customer/account');
+                    // $address = Mage::getBaseUrl('customer/account');
                     Mage::getSingleton('core/session')->set('logged_in_customer_id', $customerId);
-                    echo "<script>
-                    alert('Customer logged in successfully');
-                    location. href='{$address}/dashboard';
-                    </script>";
+                    $this->setRedirect("customer/account/dashboard");
                 }
                 else{
+                    $this->setRedirect("customer/account/login");
                     echo "<script>
                     alert('invalid password or email');
                     </script>";
@@ -87,7 +94,7 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
         // echo $customerId;
     }
 
-    public function forgotpasswordAction(){
+    public function forgetpasswordAction(){
         $layout = $this->getLayout();
         $layout->removeChild('header')->removeChild('footer');
         $layout->getChild('head')->addCss('customer/account/forgotpassword.css');

@@ -1,6 +1,7 @@
 <?php
-class Admin_Controller_Catalog_Product extends Core_Controller_Front_Action
+class Admin_Controller_Catalog_Product extends Core_Controller_Admin_Action
 {
+    protected $_allowedActions = ['form'];
     public function formAction()
     {
         $layout = $this->getLayout();
@@ -18,12 +19,22 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Front_Action
     }
 
     public function saveAction()
-    {
-        // echo "<pre>";
-        $data = $this->getRequest()->getParams('catalog_product');
-        $product = Mage::getModel('catalog/product')
-            ->setData($data);
-        $product->save();
+    {   
+        $productData = $this->getRequest()->getPostData('catalog_product');
+        $productFileData = $this->getRequest()->getFileData('catalog_product');
+        $bannerName = $productFileData['name']['image_link'];
+        $targetDir = Mage::getBaseDir('media/category/') . $bannerName;
+        $productData['image_link'] = $bannerName;
+
+        if (move_uploaded_file($productFileData["tmp_name"]["image_link"], $targetDir)) {
+            echo "File uploaded successfully.";
+        } else {
+            echo "Error uploading file.";
+        }
+
+        $productModel = Mage::getModel("catalog/product");
+        $productModel->setData($productData)->save();
+        
         // print_r($data);
     }
 

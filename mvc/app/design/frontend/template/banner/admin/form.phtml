@@ -1,0 +1,21 @@
+<h2>File Upload Form</h2>
+
+<form action="<?php echo $this->getUrl('admin/banner/save') ?>" method="post" enctype="multipart/form-data">
+    <input type="hidden" id="banner_id" name="banner[banner_id]" value="<?php echo $this->data->getBannerId() ?>">
+    <label for="image">Image:</label>
+    <input type="file" name="banner[banner_image]" id="image" value="<?php echo $this->data->getBannerImage() ?>">
+    <?php
+    // echo var_dump($this->data->getBannerImage());
+    if (!is_null($this->data->getBannerImage())? $this->data->getBannerImage() :'') {
+        echo "<img src='" . Mage::getBaseUrl('media/banner/') . $this->data->getBannerImage() . "' alt='Uploaded Image' height=100px width=200px>";
+    }
+    ?>
+    <br>
+    <label for="status">Status:</label>
+    <select name="banner[status]" id="status">
+        <option value="1" <?php echo ($this->data->getStatus() == 'Enable') ? 'selected' : '' ?>>Enable</option>
+        <option value="0" <?php echo ($this->data->getStatus() == 'Disable') ? 'selected' : '' ?>>Disable</option>
+    </select>
+    <br>
+    <input type="submit" value="Upload File">
+</form>

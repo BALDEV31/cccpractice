@@ -1,40 +1,55 @@
 <?php
-$productModel =Mage::getModel("catalog/product")->getCollection();
-// $productModel->addFieldToFilter('name', 'Dress');
-// $productModel->getData();
-//  echo "<pre>";
-// // print_r($productModel);
-//  foreach ($productModel->getData() as $product) {
-//       $product->delete();
-// }?>
+$productModel = Mage::getModel("catalog/product")->getCollection();
+
+?>
 <div class="list">
     <h2>Product List</h2>
     <table>
         <thead>
             <tr>
+                <!-- <th>ID</th> -->
                 <th>Name</th>
                 <th>SKU</th>
                 <th>Color</th>
+                <th>Size</th>
+                <th>Description</th>
+                <th>Image Link</th>
+                <th>Link</th>
+                <th>Category ID</th>
+                <th>Price</th>
+                <th>Manufacturer Cost</th>
+                <th>Shipping Cost</th>
+                <th>Total Cost</th>
+                <th>Margin Percentage</th>
+                <th>Min Price</th>
+                <th>Status</th>
                 <th class="action" colspan="2">Action</th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($productModel->getData() as $_product): ?>
                 <tr>
-                    <td>
-                        <?php echo $_product->getName() ?>
-                    </td>
-                    <td>
-                        <?php echo $_product->getSku() ?>
-                    </td>
-                    <td>
-                        <?php echo $_product->getColor() ?>
+                    <!-- <td><?php echo $_product->getProductId() ?></td> -->
+                    <td><?php echo $_product->getName() ?></td>
+                    <td><?php echo $_product->getSku() ?></td>
+                    <td><?php echo $_product->getColor() ?></td>
+                    <td><?php echo $_product->getSize() ?></td>
+                    <td><?php echo $_product->getDescription() ?></td>
+                    <td><?php echo $_product->getImageLink() ?></td>
+                    <td><?php echo $_product->getLink() ?></td>
+                    <td><?php echo $_product->getCategoryName() ?></td>
+                    <td><?php echo $_product->getPrice() ?></td>
+                    <td><?php echo $_product->getMfrCost() ?></td>
+                    <td><?php echo $_product->getShippingCost() ?></td>
+                    <td><?php echo $_product->getTotalCost() ?></td>
+                    <td><?php echo $_product->getMarginPercentage() ?></td>
+                    <td><?php echo $_product->getMinPrice() ?></td>
+                    <td><?php echo $_product->getStatus() ?></td>
+                    <td><a
+                            href="<?php echo $this->getUrl("admin/catalog_product/delete?id={$_product->getProductId()}") ?>">Delete</a>
                     </td>
                     <td><a
-                            href="<?php echo $this->getUrl("admin/catalog_product/delete?id={$_product->getId()}") ?>">Delete</a>
-                    </td>
-                    <td><a
-                            href="<?php echo $this->getUrl("admin/catalog_product/form?id={$_product->getId()}") ?>">Update</a>
+                            href="<?php echo $this->getUrl("admin/catalog_product/form?id={$_product->getProductId()}") ?>">Update</a>
                     </td>
                 </tr>
             <?php endforeach; ?>
