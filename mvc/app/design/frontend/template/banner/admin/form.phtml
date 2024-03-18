@@ -2,6 +2,7 @@
 
 <form action="<?php echo $this->getUrl('admin/banner/save') ?>" method="post" enctype="multipart/form-data">
     <input type="hidden" id="banner_id" name="banner[banner_id]" value="<?php echo $this->data->getBannerId() ?>">
+    <input type="hidden" id="banner_name" name="banner_name" value="<?php echo $this->data->getBannerImage() ?>">
     <label for="image">Image:</label>
     <input type="file" name="banner[banner_image]" id="image" value="<?php echo $this->data->getBannerImage() ?>">
     <?php

@@ -1,0 +1,38 @@
+<?php
+$productModel = Mage::getModel("bmiCalculator/bmiCalculator")->getCollection();
+?>
+<!-- <?php echo get_class($productModel) ?> -->
+<div class="list">
+    <h2>Bmi Index</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>User_Name</th>
+                <th>Result</th>
+                <th>Weight</th>
+                <th>Height</th>
+                <th class="action" >Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($productModel->getData() as $_product) : ?>
+                <tr>
+                    <td>
+                        <?php echo $_product->getUserName() ?>
+                    </td>
+                    <td>
+                        <?php echo $_product->getResult() ?>
+                    </td>
+                    <td>
+                        <?php echo $_product->getWeight() ?>
+                    </td>
+                    <td>
+                        <?php echo $_product->getHeight() ?>
+                    </td>
+                    <td><a class="button delete" href="<?php echo $this->getUrl("bmiCalculator/calculate/delete?id={$_product->getIdValue()}") ?>">Delete</a></td>
+
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>

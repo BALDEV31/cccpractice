@@ -1,13 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <?php echo ($this->getChildHtml('head'))?>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+    <?php echo ($this->getChildHtml('head')) ?>
 </head>
+
 <body>
-<div>
+    <div>
         <?php echo $this->getChildHtml('header'); ?>
     </div>
 
@@ -22,4 +30,5 @@
     </div>
 
 </body>
+
 </html>

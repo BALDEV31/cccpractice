@@ -8,8 +8,10 @@ class Catalog_Block_Admin_Category_Form extends Core_Block_Template{
     }
 
     public function getProduct(){
+        // echo '<pre>';
         $data= Mage::getModel('catalog/category')
         ->load($this->getRequest()->getParams('id',0));
+        // print_r($data);
         return $data;
     }
 

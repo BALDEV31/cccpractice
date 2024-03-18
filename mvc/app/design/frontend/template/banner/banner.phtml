@@ -1,6 +1,12 @@
-<?php
-$banner = $this->getBannerList();
-foreach ($banner as $_banner) {
-    echo "<img src='". Mage::getBaseUrl('media/banner/'). $_banner->getBannerImage()."' alt='Uploaded Image' width=750px>";
-    echo '<br>';
-}
+<div>
+    <?php $banner = $this->getBannerList(); ?>
+    <div class="slideshow-container">
+        <?php foreach ($banner as $_banner) : ?>
+            <div class="mySlides fade">
+                <div class="numbertext">1 / 3</div>
+                <img src="<?= Mage::getBaseUrl('media/banner/') . $_banner->getBannerImage() ?>" alt="Uploaded Image" style="width:100%">
+                <div class="text">Caption Text</div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</div>

@@ -38,15 +38,13 @@ class Admin_Controller_Catalog_Category extends Core_Controller_Admin_Action
 
     public function deleteAction()
     {
-        // echo "<pre>";
         $id = $this->getRequest()->getParams('id');
-        // echo $id;
-       $product = Mage::getModel('catalog/category')->load($id);
-            $product->delete();
-        // print_r($product);
+        $product = Mage::getModel('catalog/category')->load($id);
+        $product->delete();
     }
-    public function listAction(){
-        $layout= $this->getLayout();
+    public function listAction()
+    {
+        $layout = $this->getLayout();
         $layout->getChild('head');
         $layout->getChild('head')->addCss('navigation.css');
         $layout->getChild('head')->addCss('footer.css');
@@ -58,4 +56,3 @@ class Admin_Controller_Catalog_Category extends Core_Controller_Admin_Action
         $layout->toHtml();
     }
 }
-?>

@@ -1,0 +1,30 @@
+<form id="checkout_form" action="<?php echo $this->getUrl("sales/quote/address") ?>" method="POST">
+    <div class="form-group">
+        <div class="field-group">
+            <label for="payment_options" class="label-payment-options">Payment Options:</label>
+            <select id="payment_options" name="customer_payment[payment_method]" class="select-payment-options">
+                <option value="Cod">Cash on Delivery (COD)</option>
+                <option value="creditcard">Credit Card</option>
+                <option value="Upi">UPI</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="card_number" class="label-payment-options">Card Number:</label>
+        <input type="number" name="customer_payment[card_number]" placeholder="1234567890" id="card_number">
+    </div>
+
+    <div class="form-group">
+        <div class="field-group">
+            <label for="shipping_method" class="label-payment-options">Shipping Method:</label>
+            <select id="shipping_method" name="customer_payment[shipping_method]" class="select-shipping-method">
+                <option value="Normal">Normal</option>
+                <option value="sameDay">Same Day</option>
+                <option value="thisWeek">This Week</option>
+            </select>
+        </div>
+    </div>
+
+    <button type="submit" value="payment-form">Submit</button>
+</form>

@@ -1,10 +1,11 @@
-body {
+/* body {
     margin: 0;
     padding: 0;
     font-family: 'Arial', sans-serif;
 }
 
 header {
+
     background-color: #333;
     color: #fff;
     padding: 10px 20px;
@@ -29,26 +30,30 @@ nav a {
     color: #fff;
     font-weight: bold;
     font-size: 16px;
-}
+} */
 
+/* Basic styling for the footer */
 footer {
-    background-color: #333;
-    color: #fff;
-    padding: 20px;
+    background-color: #333; /* Choose your desired background color */
+    color: #fff; /* Choose your desired text color */
+    padding: 20px; /* Adjust padding as needed */
     text-align: center;
+    
 }
 
-.footer-content {
-    max-width: 600px;
-    margin: 0 auto;
+/* Style for the copyright text */
+.footer-content p {
+    margin: 0; /* Remove default margin */
 }
 
+/* Style for the footer links */
 .footer-links a {
-    text-decoration: none;
-    color: #fff;
-    margin-right: 10px;
+    color: #fff; /* Choose your link color */
+    margin-right: 10px; /* Adjust spacing between links */
+    text-decoration: none; /* Remove underlines from links */
 }
 
+/* Hover effect for the links */
 .footer-links a:hover {
-    text-decoration: underline;
+    text-decoration: underline; /* Underline on hover */
 }

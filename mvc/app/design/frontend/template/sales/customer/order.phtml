@@ -1,0 +1,18 @@
+<?php foreach($this->OrderId() as $customerId): ?>
+    <?php 
+    $id = Mage::getModel("sales/order_item")
+            ->getCollection()
+            ->addFieldToFilter("order_id", $customerId->getOrderId())
+            ->getData(); 
+    ?>
+    <?php foreach($id as $order): ?>
+        <div class="order-card">
+                <div class="order-details">
+                    <p class="product-name"><?php echo $order->getProductName() ?></p>
+                    <p class="color">Color: <span class="color-box" style="background-color: <?php echo $order->getProductColor(); ?>;"></span></p>
+                    <p class="quantity">Quantity: <?php echo $order->getQty() ?></p>
+                    <p class="total">Total: <?php echo $order->getRowTotal() ?></p>
+                </div>
+            </div>
+    <?php endforeach; ?>
+<?php endforeach; ?>

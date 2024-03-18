@@ -19,16 +19,18 @@ class Core_Model_Resource_Abstract
     {
         // echo '<pre>';
         $data = $abstract->getData();
-        // print_r($data);
-        if (isset($data[$this->getPrimaryKey()])?$data[$this->getPrimaryKey()]:'') {
+
+        if (isset($data[$this->getPrimaryKey()]) ? $data[$this->getPrimaryKey()] : '') {
+            // echo 'update';
             $sql = $this->updateSql($this->getTableName(), $data, [$this->getPrimaryKey() => $abstract->getId()]);
             $this->getAdapter()->update($sql);
         } else {
-            echo 'insert';
+            // echo 'insert';
             $sql = $this->insertSql($this->getTableName(), $data);
-            var_dump($sql);
+            // var_dump($sql);
             $id = $this->getAdapter()->insert($sql);
             $abstract->setId($id);
+            // echo $sql;
             // var_dump($id);
         }
     }
@@ -71,7 +73,7 @@ class Core_Model_Resource_Abstract
     public function updateSql($table_name, $data, $condition)
     {
         $columns = $where = [];
-        // Prepare SET clause for update
+
         foreach ($data as $field => $values) {
             $values = addslashes($values);
             $columns[] = "`$field` = '$values'";
@@ -89,7 +91,8 @@ class Core_Model_Resource_Abstract
     }
     public function load($id, $column = null)
     {
-        $sql = "SELECT * FROM {$this->_tableName} WHERE {$this->_primaryKey}={$id} LIMIT 1";
+        $sql = "SELECT * FROM {$this->_tableName} WHERE {$this->_primaryKey}='{$id}' LIMIT 1";
+        // echo $sql;
         return $this->getAdapter()->fetchRow($sql);
     }
 
@@ -100,7 +103,7 @@ class Core_Model_Resource_Abstract
 
 
     public function getPrimaryKey()
-    {   
+    {
         // var_dump($this->_primaryKey);
         return $this->_primaryKey;
     }

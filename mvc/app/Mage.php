@@ -3,12 +3,9 @@ class Mage
 {
     public static $baseDir = 'D:/xampp/htdocs/practice/mvc';
     public static $baseUrl = 'http://localhost/practice/mvc';
-    private static $_singleTon=null;
+    private static $_singleTon = null;
     public static function init()
     {
-        // $request=new Core_Model_Request();
-        // $request=Mage::getModel("core/request");
-        // echo $request->getRequestUri();
         $request = new Core_Controller_Front();
         $request->init();
     }
@@ -55,6 +52,6 @@ class Mage
         if (($subUrl)) {
             return self::$baseUrl . '/' . $subUrl;
         }
-        return self::$baseUrl.'/';
+        return self::$baseUrl . '/';
     }
 }

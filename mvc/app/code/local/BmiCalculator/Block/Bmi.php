@@ -14,4 +14,19 @@ class BmiCalculator_Block_Bmi extends Core_Block_Template{
         // print_r($data);
         return $data;
     }
+
+    public function getWeightMeasure(){
+        $data = ['pounds','kilogram'];
+        return $data;
+    }
+
+    public function getHeightMeasure(){
+        $data = ['meters','feet'];
+        return $data;
+    }
+
+    public function sessionId(){
+     $session = Mage::getSingleton('core/session')->getId();
+        return $session;
+    }
 }

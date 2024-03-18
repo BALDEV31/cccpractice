@@ -23,9 +23,9 @@ class Core_Block_Layout extends Core_Block_Template{
         $this->addChild('footer',$footer);
 
 
-        $messages = $this->createBlock('core/template');
-        $messages->setTemplate('core/messages.phtml');
-        $this->addChild('messages',$messages);
+        // $messages = $this->createBlock('core/template');
+        // $messages->setTemplate('core/messages.phtml');
+        // $this->addChild('messages',$messages);
     }
     public function createBlock($className){
        return Mage::getBlock($className);

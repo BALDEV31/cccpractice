@@ -1,13 +1,16 @@
 <header>
-        <div class="logo">
-            <img src="\practice\mvc\skin\images\images.png" alt="Logo">
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+    <div class="logo">
+        <img src="\practice\mvc\skin\images\images.png" alt="Logo">
+    </div>
+    <nav>
+        <input type="text" placeholder="Search">
+        <ul>
+            <li><a href="<?php echo $this->getUrl('cart/index/view') ?>">Cart</a></li>
+            <li><a href="<?php echo $this->getUrl('catalog/category/view') ?>">Categories</a></li>
+            <li><a href="<?php echo $this->getUrl('page/index/index') ?>">Home</a></li>
+            <li><a href="<?php echo $this->getUrl('cart/index/view') ?>">Contact</a></li>
+            <li><a href="<?php echo $this->getUrl('sales/customer_order/orderView') ?>">View Order</a></li>
+            <li><a href="<?php echo $this->getUrl('customer/account/logOut') ?>">Log Out</a></li>
+        </ul>
+    </nav>
+</header>

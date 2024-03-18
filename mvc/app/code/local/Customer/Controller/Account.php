@@ -24,8 +24,6 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
     public function loginAction()
     {
         if (!$this->getRequest()->isPost()) {
-            $data = $this->getRequest()->getParams('customer_register');
-            if (isset($data)) {
                 $layout = $this->getLayout();
                 $layout->removeChild('header')->removeChild('footer');
                 $layout->getChild('head')->addCss('customer/account/login.css');
@@ -33,9 +31,9 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
                 $loginForm = $layout->createBlock('customer/account_login');
                 $child->addChild('loginForm', $loginForm);
                 $layout->toHtml();
-            }
         } else {
             $data = $this->getRequest()->getParams('customer_login');
+            // echo 1245;
             if (isset($data)) {
                 $email = isset($data['customer_email']) ? $data['customer_email'] : '';
                 $password = isset($data['password']) ? $data['password'] : '';
@@ -54,15 +52,15 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
 
                 // echo $count;
                 if ($count) {
-                    // $address = Mage::getBaseUrl('customer/account');
+                    echo "<pre>";
                     Mage::getSingleton('core/session')->set('logged_in_customer_id', $customerId);
+                    Mage::getSingleton('sales/quote')->initQuote();
+                    // die;
                     $this->setRedirect("customer/account/dashboard");
                 }
                 else{
+                    // echo 123;
                     $this->setRedirect("customer/account/login");
-                    echo "<script>
-                    alert('invalid password or email');
-                    </script>";
                 }
             }
         }
@@ -74,7 +72,6 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
         $data = $this->getRequest()->getParams('customer_register');
         $account = Mage::getModel('customer/customer');
         $existingEmail = $account->getCollection()->addFieldToFilter('customer_email', $data['customer_email'])->getData();
-        // print_r($existingEmail);
         $address = Mage::getBaseUrl('customer/account');
         if (count($existingEmail)) {
             echo 'mail already exists';
@@ -90,8 +87,6 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
     public function dashboardAction()
     {
         $customerId = Mage::getSingleton('core/session')->get('logged_in_customer_id');
-
-        // echo $customerId;
     }
 
     public function forgetpasswordAction(){
@@ -102,5 +97,11 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
         $password = $layout->createBlock('customer/account_forgotPassword');
         $child->addChild('password', $password);
         $layout->toHtml();
+    }
+
+    public function logOutAction(){
+        Mage::getSingleton('core/session')->remove('quote_id');
+        Mage::getSingleton('core/session')->remove('logged_in_customer_id');
+        $this->setRedirect('customer/account/login');
     }
 }

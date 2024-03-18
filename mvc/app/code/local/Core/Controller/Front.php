@@ -6,16 +6,6 @@ class Core_Controller_Front{
         $fullClassName = $request->getFullControllerClass();
         $controller = new $fullClassName();
         $controller->$actionName();
-        // echo $fullClassName; die;
-        
-        // $controllerName = $coreRequestModel->getControllerName();
-        // $actionName = $coreRequestModel->getActionName();
-        // $actionName .= "Action";
-
-        // $frontControllerClass = $coreRequestModel->getFullControllerClass();
-        // $frontControllerObj = new $frontControllerClass();
-        // // echo get_class($frontControllerObj);
-        // $frontControllerObj->$actionName();
     }
 }
 ?>

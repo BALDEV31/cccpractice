@@ -4,6 +4,9 @@ class Page_Block_Head extends Core_Block_Template{
     protected $_js=[];
     public function __construct(){
         $this->setTemplate("page/head.phtml");
+        $this->addCss('navigation.css');
+        $this->addCss('footer.css');
+        $this->addJs('jquery-3.7.1.js');
     }
 
     public function addJs($file){

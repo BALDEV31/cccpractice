@@ -11,5 +11,27 @@ class BmiCalculator_Model_BmiCalculator extends Core_Model_Abstract{
     //     ];
     //     return isset($this->_data['status']) ? $mapping[$this->_data['status']]:'';
     // }
+
+    public function initQuote($data)
+    {
+        $quoteId = Mage::getSingleton("core/session")->get("session_id");
+        var_dump($quoteId);
+        $this->load($quoteId);
+        if (!$this->getId()) {
+            $quote = Mage::getModel("bmiCalculator/bmiCalculator")
+                ->setData($data);
+                // ->save();
+            Mage::getSingleton("core/session")->set("session_id", $quote->getIdValue());
+            $quoteId = $quote->getIdValue();
+            $this->load($quoteId);
+        }
+        
+        return $this;
+    }
+    public function addProduct($request)
+    {
+        $this->initQuote($request);
+    
+    }
 }
 ?>

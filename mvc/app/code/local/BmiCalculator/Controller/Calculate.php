@@ -1,5 +1,7 @@
 <?php
 class BmiCalculator_Controller_Calculate extends Core_Controller_Front_Action{
+
+    protected $_allowedActions=[];
     public function indexAction(){
         $layout = $this->getLayout();
         $layout->removeChild('header')->removeChild('footer');
@@ -8,17 +10,15 @@ class BmiCalculator_Controller_Calculate extends Core_Controller_Front_Action{
         $child->addChild('bmi', $bmiBlock);
         $layout->toHtml();
     }
-
+    
     public function saveAction(){
-        echo '<pre>';
         $data = $this->getRequest()->getParams('bmi');
-        print_r($data);
 
-        if($data['weight_value']=='pounds'){
-            $weight = ($data['weight']*2.20462);
+        if(!is_null($data['weight_value'])?($data['weight_value']=='pounds'):''){
+            $weight = ($data['weight']/2.20462);
             $data['weight']= $weight;
         }
-        if($data['height_value']=='feet'){
+        if(!is_null($data['height_value'])?($data['height_value']=='feet'):''){
             $height = ($data['height']*3.28084);
             $data['height']= $height;
         }
@@ -26,15 +26,36 @@ class BmiCalculator_Controller_Calculate extends Core_Controller_Front_Action{
         $result = $data['weight']/pow(($data['height']),2);
         $product = Mage::getModel('bmiCalculator/bmiCalculator')
             ->setData($data);
-            Mage::getSingleton('core/session');
+
+            if($result<18.5){
+                $result = 'underweight';
+            }elseif($result <24.5 && $result > 18.5){
+                $result = 'normal';
+            }elseif($result <29.9 && $result > 25){
+                $result='overweight';
+            }else{
+                $result = 'obese';
+            }
+            
             $product->addData('result',$result);
+            $product->removeData('height_value')->removeData('weight_value');
 
-            print_r($product);
+           $product->save();
 
-        $product->save();
+    }
+    
+    public function listAction(){
+        $layout = $this->getLayout();
+        $layout->removeChild('header')->removeChild('footer');
+        $child = $layout->getChild('content');
+        $bmiBlock=$layout->createBlock('bmiCalculator/list');
+        $child->addChild('list', $bmiBlock);
+        $layout->toHtml();
     }
 
-    public function viewAction(){
-
+    public function deleteAction(){
+        $Id = $this->getRequest()->getParams("id");
+        $Data = Mage::getModel("bmiCalculator/bmiCalculator")->load( $Id );
+        $Data->delete();
     }
 }

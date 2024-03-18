@@ -19,34 +19,40 @@ class Admin_Controller_Banner extends Core_Controller_Admin_Action
         $bannerData = $this->getRequest()->getPostData('banner');
         $bannerFileData = $this->getRequest()->getFileData('banner');
         $bannerName = $bannerFileData['name']['banner_image'];
-        $targetDir = Mage::getBaseDir('media/banner/') . $bannerName;
-        $bannerData['banner_image'] = $bannerName;
+        if (!empty($bannerName)) {
+            $targetDir = Mage::getBaseDir('media/banner/') . $bannerName;
+            $bannerData['banner_image'] = $bannerName;
 
-        if (move_uploaded_file($bannerFileData["tmp_name"]["banner_image"], $targetDir)) {
-            echo "File uploaded successfully.";
+            if (move_uploaded_file($bannerFileData["tmp_name"]["banner_image"], $targetDir)) {
+                echo "File uploaded successfully.";
+            } else {
+                echo "Error uploading file.";
+            }
         } else {
-            echo "Error uploading file.";
+            $bannerName = $this->getRequest()->getPostData('banner_name');
+            $bannerData['banner_image'] = $bannerName;
         }
-
         $bannerModel = Mage::getModel("banner/banner");
         $bannerModel->setData($bannerData)->save();
     }
 
-    public function deleteAction(){
+    public function deleteAction()
+    {
         $bannerId = $this->getRequest()->getParams("id");
-        $bannerData = Mage::getModel("banner/banner")->load( $bannerId );
+        $bannerData = Mage::getModel("banner/banner")->load($bannerId);
         $bannerImgPath = Mage::getBaseDir("media/banner/") . $bannerData->getBannerName();
         unlink($bannerImgPath);
         $bannerData->delete();
         $this->setRedirect("admin/banner/list");
     }
 
-    public function listAction(){
+    public function listAction()
+    {
         $layout = $this->getLayout();
         $layout->getChild('head')->addCss('');
         $child = $layout->getChild('content');
         $bannerList = $layout->createBlock('banner/list');
-        $child->addChild('bannerList',$bannerList);
+        $child->addChild('bannerList', $bannerList);
         $layout->toHtml();
     }
 }

@@ -30,6 +30,13 @@ class Core_Model_Resource_Collection_Abstract
         $this->_select['WHERE'][$field][] = $value;
         return $this;
     }
+
+    public function getFirstItem(){
+        $data=$this->getData();
+        // print_r($data);
+
+        return $data[0];
+    }
     public function load()
     {
         $sql = "SELECT * FROM {$this->_select['FROM']} ";

@@ -82,13 +82,26 @@ class Core_Model_Abstract
     }
     public function addData($key, $value)
     {
+        $this->_data[$key] = $value;
+        return $this;
     }
     public function removeData($data)
     {
+        unset( $this->_data[$data] );
+        return $this;
+    }
+    protected function _beforeSave() {
+
+    }
+    protected function _afterSave() {
+        
     }
     public function save()
     {   
+        $this->_beforeSave();
+        // echo 'hello';
         $this->getResource()->save($this);
+        $this->_afterSave();
         return $this;
     }
     public function load($id, $column = null)
@@ -100,9 +113,11 @@ class Core_Model_Abstract
     public function delete()
     {
         // echo 'helo';
+        // $this->_beforeSave();
         if ($this->getId()) {
             $this->getResource()->delete($this);
         }
+        // $this->_afterSave();
         // echo "doe";
         return $this;
     }

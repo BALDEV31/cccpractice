@@ -34,7 +34,7 @@ class Core_Model_Session
     }
     public function __destruct()
     {
-
+       
     }
 
 }
