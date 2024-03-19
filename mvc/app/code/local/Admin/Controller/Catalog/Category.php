@@ -24,6 +24,7 @@ class Admin_Controller_Catalog_Category extends Core_Controller_Admin_Action
             ->setData($data);
         $product->save();
         // print_r($data);
+        $this->setRedirect("admin/catalog_category/list");
     }
 
     // public function deleteAction()

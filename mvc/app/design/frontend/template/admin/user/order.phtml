@@ -1,0 +1,31 @@
+<table class="order-table">
+    <thead>
+        <tr>
+            <th>Order Number</th>
+            <th>Grand Total</th>
+            <th>Status</th>
+            <th>Edit Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php $orderList=$this->getOrderDetails()?>
+        <?php foreach ($orderList as $order) : ?>
+            <tr class="order-row">
+                <td><?php echo $order->getOrderNumber() ?></td>
+                <td><?php echo $order->getGrandTotal() ?></td>
+                <td><?php echo $this->getStatusName($order->getStatus()) ?></td>
+                <td>
+                    <form action="<?php echo $this->getUrl('admin/order_list/save')?>" method="post">
+                        <select name="order[status]">
+                            <?php foreach ($this->setStatus() as $key => $status) : ?>
+                                <option value="<?php echo $key ?>"><?php echo $status ?></option>
+                            <?php endforeach ?>
+                        </select>
+                        <input type="hidden" name="order[order_id]" value="<?php echo $order->getOrderId() ?>">
+                        <input type="submit" value="Update">
+                    </form>
+                </td>
+            </tr>
+        <?php endforeach ?>
+    </tbody>
+</table>

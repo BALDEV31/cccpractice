@@ -2,16 +2,21 @@
     <div class="product-container">
         <?php $totalCost = 0; ?>
         <?php $products = $this->data; ?>
-        <?php foreach ($products as $product) : ?>
+        <?php foreach ($products as $item) : ?>
+            <?php
+            $product = $item->getProduct();
+            $rowTotal = $product->getPrice() * $item->getQty();
+            $totalCost += $rowTotal;
+            ?>
             <div class="product-card">
                 <img src="<?php echo $this->getUrl('media/category/') . $product->getImageLink() ?>" alt="Product Image" class="product-image">
                 <h3 class="product-title"><?php echo $product->getName(); ?></h3>
-                <p class="product-description"><?php echo $product->getQty(); ?></p>
+                <p class="product-description"><?php echo $item->getQty(); ?></p>
                 <span class="product-price"><?php echo $product->getPrice(); ?></span>
-                <span class="total-price"><?php echo $product->getRowTotal(); ?></span>
+                <span class="total-price"><?php echo $item->getRowTotal(); ?></span>
                 <form action="<?php echo $this->getUrl('sales/quote/update') ?>" method="post">
                     <input type="hidden" name="product_id" value="<?php echo $product->getProductId() ?>">
-                    <input type="number" name="quantity" value="<?php echo $product->getQty() ?>" min="1">
+                    <input type="number" name="quantity" value="<?php echo $item->getQty() ?>" min="1">
                     <button type="submit" class="update-button">Update</button>
                 </form>
 
@@ -20,11 +25,11 @@
                     <button type="submit" class="delete-button">Delete</button>
                 </form>
             </div>
-            <?php $totalCost += $product->getRowTotal() ?>
+
         <?php endforeach; ?>
     </div>
     <div class="total-cost">Total: <?php echo $totalCost ?></div>
-    <a href=<?php echo $this->getUrl('cart/checkout/index')?> class="checkout-button">
+    <a href=<?php echo $this->getUrl('cart/checkout/index') ?> class="checkout-button">
         <button type="submit">Check Out</button>
     </a>
 </div>

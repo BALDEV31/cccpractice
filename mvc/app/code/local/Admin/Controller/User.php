@@ -5,7 +5,6 @@ class Admin_Controller_User extends Core_Controller_Admin_Action
     protected $_allowedActions = ['login'];
     public function loginAction()
     {
-
         if (!$this->getRequest()->isPost()) {
             $layout = $this->getLayout();
             $layout->removeChild('header')->removeChild('footer');
@@ -17,9 +16,7 @@ class Admin_Controller_User extends Core_Controller_Admin_Action
             $child->addChild('adminLogin', $adminLogin);
             $layout->toHtml();
         } else {
-            // echo'123';
-            $data = $this->getRequest()->getParams('admin_login');
-            // print_r($data); 
+            $data = $this->getRequest()->getParams('admin_login'); 
             $adminEmail = 'admin@gmail.com';
             $adminPassword = 'admin';
             if ($adminEmail == $data['admin_email'] && $adminPassword == $data['password']) {
@@ -29,5 +26,10 @@ class Admin_Controller_User extends Core_Controller_Admin_Action
                 $this->setRedirect("admin/user/login");
             }
         }
+    }
+
+    public function logOutAction(){
+        Mage::getSingleton('core/session')->remove('logged_in_admin_user_id');
+        $this->setRedirect("admin/user/login");
     }
 }

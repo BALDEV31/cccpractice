@@ -1,0 +1,84 @@
+/* General Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
+    /* display: flex; */
+    justify-content: left;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Order Card Container */
+.order-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Order Card Styles */
+.order-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 300px;
+    margin: 10px;
+    transition: box-shadow 0.3s ease;
+}
+
+.order-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.order-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.product-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.color {
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.color-box {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    margin-left: 4px;
+    vertical-align: middle;
+}
+
+.quantity,
+.total {
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .order-card {
+        padding: 16px;
+        max-width: 250px;
+    }
+
+    .product-name {
+        font-size: 16px;
+    }
+
+    .color,
+    .quantity,
+    .total {
+        font-size: 12px;
+    }
+}

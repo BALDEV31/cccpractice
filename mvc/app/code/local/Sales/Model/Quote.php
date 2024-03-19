@@ -18,13 +18,12 @@ class Sales_Model_Quote extends Core_Model_Abstract
             ->getFirstItem();
 
         if (!is_null($existingQuoteId)) {
-
-             Mage::getSingleton("core/session")->set("quote_id", $existingQuoteId->getId());
+            Mage::getSingleton("core/session")->set("quote_id", $existingQuoteId->getId());
 
             $this->load($existingQuoteId->getId());
         } else {
             if (!$this->getId()) {
-                
+
                 $quote = Mage::getModel("sales/quote")
                     ->setData(["tax_percent" => 8, "grand_total" => 0])
                     ->addData("customer_id", $customerId)

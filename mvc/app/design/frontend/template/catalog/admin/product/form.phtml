@@ -48,7 +48,7 @@
         <label for="category">Category:</label>
         <select name="catalog_product[category_id]" id="category">
             <?php
-            $categories = Mage::getModel('catalog/category')->getCollection()->getData();
+            $categories = Mage::getModel('catalog/category')->getCollection()->addFieldToFilter('status','1')->getData();
             foreach ($categories as $category) {
                 echo '<option value=" ' . $category->getCategoryId() . '">' . $category->getCategoryName() . '</option>';
             }
