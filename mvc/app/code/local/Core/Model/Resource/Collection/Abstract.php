@@ -6,13 +6,18 @@ class Core_Model_Resource_Collection_Abstract
     protected $_select = [];
     protected $_data = [];
     protected $_model = null;
-    // public function __construct()
-    // {
-    //     echo 123;
-    // }
-
-    public function setModel($model){
+    public function setModel($model)
+    {
         $this->_model = $model;
+        return $this;
+    }
+
+    public function addOrderBy($field, $direction = 'ASC')
+    {
+        $this->_select['ORDER BY'][] = array(
+            'field' => $field,
+            'direction' => strtoupper($direction)
+        );
         return $this;
     }
     public function setResource($resource)
@@ -31,11 +36,16 @@ class Core_Model_Resource_Collection_Abstract
         return $this;
     }
 
-    public function getFirstItem(){
-        $data=$this->getData();
-        // print_r($data);
-
+    public function getFirstItem()
+    {
+        $data = $this->getData();
         return $data[0];
+    }
+
+    public function getLastItem()
+    {
+        $data = $this->getData();
+        return $data[count($data) - 1];
     }
     public function load()
     {
@@ -64,14 +74,26 @@ class Core_Model_Resource_Collection_Abstract
                             case 'like':
                                 $whereCondition[] = "{$column} LIKE '{$_v}'";
                                 break;
-                            // case 'limit':
-                            //     $whereCondition[] = "LIMIT '{$_v}'";
-                            //     break;
+                            case 'not in':
+                                $whereCondition[] = "{$column} NOT IN ({$_v})";
+                                break;
+                                // case 'limit':
+                                //     $whereCondition[] = "LIMIT '{$_v}'";
+                                //     break;
                         }
                     }
                 }
             }
             $sql .= " WHERE " . implode(" AND ", $whereCondition);
+
+            if (isset($this->_select['ORDER BY'])) {
+                $orderBy = [];
+                foreach ($this->_select['ORDER BY'] as $order) {
+                    $orderBy[] = "{$order['field']} {$order['direction']}";
+                }
+                $sql .= " ORDER BY " . implode(', ', $orderBy);
+            }
+            // echo $sql;
             // print_r($whereCondition);
         }
         // echo $sql;

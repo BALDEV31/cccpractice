@@ -34,9 +34,8 @@ class Core_Model_DB_Adapter
         $row = [];
         $this->connect();
         $result = mysqli_query($this->connect, $query);
-        // var_dump($query);
         // var_dump($result);
-        while ($_row = mysqli_fetch_assoc($result)){
+        while ($_row = mysqli_fetch_assoc($result)) {
             $row = $_row;
         }
         return $row;
@@ -44,8 +43,6 @@ class Core_Model_DB_Adapter
 
     public function insert($query)
     {
-        // $this->connect();
-        // echo 'inside insert';
         $result = mysqli_query($this->connect(), $query);
         if ($result) {
             return mysqli_insert_id($this->connect());
@@ -54,11 +51,10 @@ class Core_Model_DB_Adapter
         }
     }
 
-    public function update($query){
-        // echo 'inside update';
+    public function update($query)
+    {
         $result = mysqli_query($this->connect(), $query);
         if ($result) {
-            // echo 'inside if';
             return true;
         } else {
             return false;
@@ -66,13 +62,32 @@ class Core_Model_DB_Adapter
     }
 
     public function delete($query)
-    {   
+    {
         $result = mysqli_query($this->connect(), $query);
-        // print_r($result);
         if ($result) {
             return mysqli_affected_rows($this->connect());
         } else {
             return false;
         }
+    }
+
+    public function saveImport($tableName, $data)
+    {
+        $keys = array_keys($data);
+        $values = array_map(function ($value) {
+            return "'" . $value . "'";
+        }, $data);
+
+        $check = Mage::getModel('catalog/product')->getCollection()->addFieldToFilter('sku', $data['sku'])->getFirstItem();
+        if ($check) {
+            $updateValues = array();
+            foreach ($values as $key => $column) {
+                $updateValues[] = "$key = " . $column;
+            }
+            $sql = "UPDATE {$tableName} SET " . implode(", ", $updateValues) . " WHERE sku=" . "'" . $data['sku'] . "'";
+        } else {
+            $sql = "INSERT INTO {$tableName} (" . implode(", ", $keys) . ") VALUES (" . implode(", ", $values) . ")";
+        }
+        mysqli_query($this->connect(), $sql);
     }
 }

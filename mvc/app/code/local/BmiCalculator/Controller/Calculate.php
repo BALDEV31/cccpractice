@@ -3,12 +3,14 @@ class BmiCalculator_Controller_Calculate extends Core_Controller_Front_Action{
 
     protected $_allowedActions=[];
     public function indexAction(){
+        echo '<pre>';
         $layout = $this->getLayout();
-        $layout->removeChild('header')->removeChild('footer');
+        // print_r($layout);
+        // $layout->removeChild('header')->removeChild('footer');
         $child = $layout->getChild('content');
         $bmiBlock=$layout->createBlock('bmiCalculator/bmi');
         $child->addChild('bmi', $bmiBlock);
-        $layout->toHtml();
+        var_dump($layout->toHtml());
     }
     
     public function saveAction(){

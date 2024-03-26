@@ -1,3 +1,12 @@
+<!-- <pre> -->
+<?php
+$order = $this->displayOrder();
+$cancelRequests = $this->getCancelRequest();
+$cancelOrderIds = [];
+foreach ($cancelRequests as $cancelRequestId) {
+    $cancelOrderIds[] = $cancelRequestId->getOrderId();
+}
+?>
 <table class="order-table">
     <thead>
         <tr>
@@ -8,22 +17,37 @@
         </tr>
     </thead>
     <tbody>
-        <?php $orderList=$this->getOrderDetails()?>
+        <?php $orderList = $this->getOrderDetails() ?>
         <?php foreach ($orderList as $order) : ?>
             <tr class="order-row">
                 <td><?php echo $order->getOrderNumber() ?></td>
                 <td><?php echo $order->getGrandTotal() ?></td>
                 <td><?php echo $this->getStatusName($order->getStatus()) ?></td>
                 <td>
-                    <form action="<?php echo $this->getUrl('admin/order_list/save')?>" method="post">
+                    <form action="<?php echo $this->getUrl('admin/order_list/save') ?>" method="post">
                         <select name="order[status]">
                             <?php foreach ($this->setStatus() as $key => $status) : ?>
-                                <option value="<?php echo $key ?>"><?php echo $status ?></option>
+                                <option value="<?php echo $key ?>" <?php echo ($order->getStatus() == $key) ? 'selected' : ''; ?>>
+                                    <?php echo $status ?>
+                                </option>
                             <?php endforeach ?>
                         </select>
                         <input type="hidden" name="order[order_id]" value="<?php echo $order->getOrderId() ?>">
                         <input type="submit" value="Update">
                     </form>
+                </td>
+                <td>
+                    <?php $toStatus = ($this->showCancelRequest($order->getOrderId())->getToStatus()) == 5 ?>
+                    <?php if ((in_array($order->getOrderId(), $cancelOrderIds)) and $toStatus) : ?>
+                        <form action="<?php echo Mage::getBaseUrl('admin/order_list/approve') ?>" method="post">
+                            <input type="hidden" name="approve[order_id]" value="<?php echo $order->getOrderId() ?>">
+                            <input type="submit" value="Approve">
+                        </form>
+                        <form action="<?php echo Mage::getBaseUrl('admin/order_list/reject') ?>" method="post">
+                            <input type="hidden" name="Reject[order_id]" value="<?php echo $order->getOrderId() ?>">
+                            <input type="submit" value="Reject">
+                        </form>
+                    <?php endif ?>
                 </td>
             </tr>
         <?php endforeach ?>

@@ -99,7 +99,6 @@ class Core_Model_Abstract
     public function save()
     {   
         $this->_beforeSave();
-        // echo 'hello';
         $this->getResource()->save($this);
         $this->_afterSave();
         return $this;

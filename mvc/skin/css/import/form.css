@@ -1,0 +1,82 @@
+/* Style for the login container */
+.login-container {
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+h2{
+    text-align: center;
+    padding-bottom: 19px;
+}
+
+input #file-upload-button{
+    background-color: rgb(224, 141, 32);
+}
+
+
+/* Style for the login form */
+.login-form {
+    margin-bottom: 20px;
+}
+
+/* Style for the form fields */
+.form-field {
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+.form-field label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-field input[type="file"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+/* Style for the form action button */
+.form-action button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* Style for the 'Read' and 'Import' buttons */
+.button {
+    margin-bottom: 10px;
+    border: none;
+}
+
+.button a {
+    display: block;
+    padding: 5px 5px;
+    border: none;
+    border-radius: 3px;
+    background-color: #28a745; /* Green color */
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+}
+
+.button a:hover {
+    background-color: #218838; /* Darker shade of green */
+}
+
+#upload{
+    background-color: rgb(201, 199, 199);
+    border: none;
+    color: #f9f9f9;
+}

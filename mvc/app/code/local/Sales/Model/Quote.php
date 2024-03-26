@@ -10,7 +10,6 @@ class Sales_Model_Quote extends Core_Model_Abstract
     public function initQuote()
     {
         $customerId = Mage::getSingleton('core/session')->get('logged_in_customer_id');
-        echo $customerId;
         $quoteId = Mage::getSingleton("core/session")->get("quote_id");
         $existingQuoteId = Mage::getModel("sales/quote")->getCollection()
             ->addFieldToFilter("order_id", 0)
@@ -121,20 +120,25 @@ class Sales_Model_Quote extends Core_Model_Abstract
         $this->convertQuoteAddressToOrderAddress($orderId);
         $payment = $this->quotePayToOrderPay($orderId);
         $shipping = $this->quoteShippingToOrderShipping($orderId);
-        $this->addData("order_id", $order->getId())->save();
+        $this->addData("order_id", $orderId)->save();
         $order->addData('payment_id', $payment->getId())->addData('shipping_id', $shipping->getId())->save();
+        $this->orderHistory($orderId);
     }
 
 
     public function convertQuoteToOrder()
     {
         if ($this->getId()) {
-            return Mage::getModel('sales/order')->setData($this->getData())
+            $orderNumber = uniqid();
+            $order = (Mage::getModel('sales/order')->setData($this->getData())
                 ->removeData("quote_id")
                 ->removeData("shipping_id")
                 ->removeData("payment_id")
                 ->removeData("order_id")
-                ->save();
+                ->removeData("customer_id")
+                ->addData('order_number', $orderNumber)
+                ->save());
+           return ($order);
         }
     }
     public function convertQuoteItemToOrderItem($orderId)
@@ -191,7 +195,7 @@ class Sales_Model_Quote extends Core_Model_Abstract
             $shipping = Mage::getModel('sales/quote_shipping')->getCollection()
                 ->addFieldToFilter('quote_id', $this->getId())->getFirstItem();
 
-            return Mage::getModel('sales/order_payment')->setData($shipping->getData())
+            return Mage::getModel('sales/order_shipping')->setData($shipping->getData())
                 ->removeData('shipping_id')
                 ->removeData('quote_id')
                 ->addData('order_id', $orderId)
@@ -204,12 +208,27 @@ class Sales_Model_Quote extends Core_Model_Abstract
         echo "<pre>";
         $CustomerId = Mage::getSingleton('core/session')->get('logged_in_customer_id');
         $modelName = Mage::getModel('customer/address');
-        print_r($modelName);
+        // print_r($modelName);
         $modelName->setData($addressData);
-        print_r($modelName);
+        // print_r($modelName);
         if ($CustomerId) {
             $modelName->addData('customer_id', $CustomerId)
                 ->save();
+        }
+    }
+
+    public function orderHistory($orderId){
+        if($this->getId()){
+            $status = Sales_Model_Order_History::DEFAULT_ORDER_STATUS;
+            $history = Mage::getModel('sales/order_history')
+                ->setData(
+                    [
+                        'order_id'=>$orderId,
+                        // 'to_status'=> $status,
+                        'action_by'=> 0
+                    ]
+                );
+            $history->save();
         }
     }
 }

@@ -10,7 +10,6 @@ class Sales_Model_Order extends Core_Model_Abstract
     }
 
     public function _beforeSave(){
-        $orderNumber = uniqid();
-        $this->addData('order_number',$orderNumber);
+        
     }
 }

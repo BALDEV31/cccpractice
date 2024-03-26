@@ -13,6 +13,21 @@
                     <p class="color">Color: <span class="color-box" style="background-color: <?php echo $order->getProductColor(); ?>;"></span></p>
                     <p class="quantity">Quantity: <?php echo $order->getQty() ?></p>
                     <p class="total">Total: <?php echo $order->getRowTotal() ?></p>
+                    <?php $status = Mage::getModel('sales/order')->load($order->getOrderId())->getStatus(); ?>
+                    <?php $toShow = $this->historyStatus($order->getOrderId())->getToStatus() ?>
+                    <?php if (($toShow == 7) and $status != 4) : ?>
+                        <?php echo "your cancellation request is declined" ?>
+                    <?php elseif (($toShow == 5) and $status != 4) : ?>
+                        <?php echo "your cancellation request is sended" ?>
+                    <?php elseif (!($toShow == 5 or $toShow == 6  or $toShow == 0)) : ?>
+                        <form action="<?php echo Mage::getBaseUrl('sales/customer_order/cancel'); ?>" method="post">
+                            <input type="hidden" name="cancel[order_id]" value="<?php echo $order->getOrderId()  ?>">
+                            <input type="hidden" name="cancel[cancel]" value="5">
+                            <input type="submit" value=cancel>
+                        </form>
+                    <?php elseif ($status == 4) : ?>
+                        <?php echo "your cancellation request is accepted" ?>
+                    <?php endif ?>
                 </div>
             </div>
         <?php endforeach; ?>
