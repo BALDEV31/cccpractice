@@ -1,0 +1,42 @@
+<!-- <pre> -->
+<?php $parent = $this->getParentOptions() ?>
+    
+        <select name="agent"  onchange="showHint(this.value)">
+            <?php foreach ($parent as $_parent) : ?>
+                <option value="<?php echo $_parent->getId() ?>" <?php echo ($_parent->getId() == $this->data) ? 'selected' : ''; ?>>
+                <?php echo $_parent->getName() ?>
+            </option>
+            <?php endforeach ?>
+        </select>
+        
+
+<p>Suggestions: <select id="dropdown"></select></p>
+<script>
+function showHint(str) {
+    if (str.length == 0) {
+        document.getElementById("dropdown").innerHTML = "";
+        return;
+    } else {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                // Clear existing options
+                document.getElementById("dropdown").innerHTML = "";
+
+                // Get the array directly from the response
+                var options = this.responseText;
+                // console.log(options.id);
+                console.log(options);
+                // Get the select element
+                var select = document.getElementById("dropdown");
+
+                // Create options based on the data received
+               
+            }
+        };
+        xmlhttp.open("GET", "save?agentId=" + str, true);
+        xmlhttp.send();
+    }
+}
+
+</script>
